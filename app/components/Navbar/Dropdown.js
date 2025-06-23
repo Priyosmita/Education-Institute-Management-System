@@ -13,7 +13,7 @@ const DropdownSection = ({
 }) => {
   return (
     <div
-      className="mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer"
+      className="mx-4 rounded-lg p-3 bg-gray-200 duration-300 cursor-pointer"
       onClick={() => {
         setIsOpen(!isOpen);
         resetAllExcept(id);
@@ -29,9 +29,9 @@ const DropdownSection = ({
                 e.stopPropagation();
                 onSelect(option);
               }}
-              className={`p-2 rounded hover:bg-blue-50 transition-colors ${
+              className={`p-2 rounded hover:bg-gray-400 transition-colors ${
                 selectedOption === option
-                  ? 'text-[#163f98] font-semibold bg-[#b1e1ff]'
+                  ? 'text-white bg-blue-600'
                   : 'text-gray-700'
               }`}
             >

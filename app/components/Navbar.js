@@ -1,15 +1,19 @@
-'use client'
-import React, { useState } from 'react'
+'use client';
+import React, { useState } from 'react';
 
 const Navbar = () => {
+  // Dashboard
+  const [selectedDashboard, setSelectedDashboard] = useState(false);
+  const getDashboardStyles = () =>
+    selectedDashboard ? 'bg-[#b1e1ff] text-[#163f98] font-semibold' : 'bg-[#ffffff] text-gray-800';
 
-  // Students option
+  // Students
   const [isStudentOpen, setIsStudentOpen] = useState(false);
   const [selectedStudentOption, setSelectedStudentOption] = useState(null);
   const studentOptions = ['Add New Student', 'View Student Details'];
   const handleSelectStudentOption = (option) => {
     setSelectedStudentOption(option);
-    setIsStudentOpen(true); // Keep the menu open after selection
+    setIsStudentOpen(true);
   };
 
   // Teachers
@@ -18,7 +22,7 @@ const Navbar = () => {
   const teacherOptions = ['Add New Teacher', 'View Teacher Details'];
   const handleSelectTeacherOption = (option) => {
     setSelectedTeacherOption(option);
-    setIsTeacherOpen(true); // Keep the menu open after selection
+    setIsTeacherOpen(true);
   };
 
   // Fees
@@ -27,7 +31,7 @@ const Navbar = () => {
   const feeOptions = ['Recieve Fees', 'Discounts to Students'];
   const handleSelectFeeOption = (option) => {
     setSelectedFeeOption(option);
-    setIsFeeOpen(true); // Keep the menu open after selection
+    setIsFeeOpen(true);
   };
 
   // Batches
@@ -36,28 +40,55 @@ const Navbar = () => {
   const batchOptions = ['Add New Batch', 'Batch Details', 'Add Subject'];
   const handleSelectBatchOption = (option) => {
     setSelectedBatchOption(option);
-    setIsBatchOpen(true); // Keep the menu open after selection
+    setIsBatchOpen(true);
+  };
+
+  // Reports
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [selectedReportOption, setSelectedReportOption] = useState(null);
+  const reportOptions = ['Student Report', 'Teacher Report', 'Course Report', 'Expense Report', 'Batch Report', 'Fees Report'];
+  const handleSelectReportOption = (option) => {
+    setSelectedReportOption(option);
+    setIsReportOpen(true);
+  };
+
+  // Reset all dropdowns
+  const resetAllExcept = (section) => {
+    if (section !== 'dashboard') setSelectedDashboard(false);
+    if (section !== 'student') setIsStudentOpen(false);
+    if (section !== 'teacher') setIsTeacherOpen(false);
+    if (section !== 'fee') setIsFeeOpen(false);
+    if (section !== 'batch') setIsBatchOpen(false);
+    if (section !== 'report') setIsReportOpen(false);
   };
 
   return (
     <>
-      <div className='bg-gray-100 shadow-xl h-fit w-72 rounded-lg flex flex-col gap-y-6 pb-6'>
-        <div className='text-xl font-bold text-gray-800 p-6'>Navigation</div>
+      <div className="bg-gray-100 shadow-xl h-fit w-72 rounded-lg flex flex-col gap-y-6 pb-6">
+        <div className="text-xl font-bold text-gray-800 p-6">Navigation</div>
 
-        <div>
-          Dashboard
+        {/* Dashboard */}
+        <div
+          className={`mx-4 rounded-lg p-3 duration-300 cursor-pointer transition-colors ${getDashboardStyles()}`}
+          onClick={() => {
+            setSelectedDashboard(true);
+            resetAllExcept('dashboard');
+          }}
+        >
+          <div className="text-xl">Dashboard</div>
         </div>
 
-        <div className={'mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer'}
-          onClick={() => {setIsStudentOpen(!isStudentOpen);
-            if (!isStudentOpen) setIsTeacherOpen(false);
-            if (!isStudentOpen) setIsFeeOpen(false);
-            if (!isStudentOpen) setIsBatchOpen(false);
-          }}>
-
-          <div className='text-xl text-gray-800'>Students</div>
+        {/* Students */}
+        <div
+          className="mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer"
+          onClick={() => {
+            setIsStudentOpen(!isStudentOpen);
+            resetAllExcept('student');
+          }}
+        >
+          <div className="text-xl text-gray-800">Students</div>
           {isStudentOpen && (
-            <ul className='mt-3 space-y-2'>
+            <ul className="mt-3 space-y-2">
               {studentOptions.map((option) => (
                 <li
                   key={option}
@@ -65,10 +96,11 @@ const Navbar = () => {
                     e.stopPropagation();
                     handleSelectStudentOption(option);
                   }}
-                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${selectedStudentOption === option
+                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${
+                    selectedStudentOption === option
                       ? 'text-[#163f98] font-semibold bg-[#b1e1ff]'
                       : 'text-gray-700'
-                    }`}
+                  }`}
                 >
                   {option}
                 </li>
@@ -77,17 +109,17 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className={'mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer'}
-          onClick={() => {setIsTeacherOpen(!isTeacherOpen);
-            if (!isTeacherOpen) setIsStudentOpen(false);
-            if (!isTeacherOpen) setIsFeeOpen(false); 
-            if (!isTeacherOpen) setIsBatchOpen(false);
+        {/* Teachers */}
+        <div
+          className="mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer"
+          onClick={() => {
+            setIsTeacherOpen(!isTeacherOpen);
+            resetAllExcept('teacher');
           }}
-          >
-
-          <div className='text-xl text-gray-800'>Teachers</div>
+        >
+          <div className="text-xl text-gray-800">Teachers</div>
           {isTeacherOpen && (
-            <ul className='mt-3 space-y-2'>
+            <ul className="mt-3 space-y-2">
               {teacherOptions.map((option) => (
                 <li
                   key={option}
@@ -95,10 +127,11 @@ const Navbar = () => {
                     e.stopPropagation();
                     handleSelectTeacherOption(option);
                   }}
-                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${selectedTeacherOption === option
+                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${
+                    selectedTeacherOption === option
                       ? 'text-[#163f98] font-semibold bg-[#b1e1ff]'
                       : 'text-gray-700'
-                    }`}
+                  }`}
                 >
                   {option}
                 </li>
@@ -107,17 +140,17 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className={'mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer'}
-          onClick={() => {setIsFeeOpen(!isFeeOpen);
-            if (!isFeeOpen) setIsStudentOpen(false); 
-            if (!isFeeOpen) setIsTeacherOpen(false); 
-            if (!isFeeOpen) setIsBatchOpen(false); 
+        {/* Fees */}
+        <div
+          className="mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer"
+          onClick={() => {
+            setIsFeeOpen(!isFeeOpen);
+            resetAllExcept('fee');
           }}
-          >
-
-          <div className='text-xl text-gray-800'>Fees</div>
+        >
+          <div className="text-xl text-gray-800">Fees</div>
           {isFeeOpen && (
-            <ul className='mt-3 space-y-2'>
+            <ul className="mt-3 space-y-2">
               {feeOptions.map((option) => (
                 <li
                   key={option}
@@ -125,10 +158,11 @@ const Navbar = () => {
                     e.stopPropagation();
                     handleSelectFeeOption(option);
                   }}
-                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${selectedFeeOption === option
+                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${
+                    selectedFeeOption === option
                       ? 'text-[#163f98] font-semibold bg-[#b1e1ff]'
                       : 'text-gray-700'
-                    }`}
+                  }`}
                 >
                   {option}
                 </li>
@@ -137,17 +171,17 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className={'mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer'}
-          onClick={() => {setIsBatchOpen(!isBatchOpen);
-            if (!isBatchOpen) setIsStudentOpen(false); 
-            if (!isBatchOpen) setIsTeacherOpen(false); 
-            if (!isBatchOpen) setIsFeeOpen(false); 
+        {/* Batches */}
+        <div
+          className="mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer"
+          onClick={() => {
+            setIsBatchOpen(!isBatchOpen);
+            resetAllExcept('batch');
           }}
-          >
-
-          <div className='text-xl text-gray-800'>Batches</div>
+        >
+          <div className="text-xl text-gray-800">Batches</div>
           {isBatchOpen && (
-            <ul className='mt-3 space-y-2'>
+            <ul className="mt-3 space-y-2">
               {batchOptions.map((option) => (
                 <li
                   key={option}
@@ -155,10 +189,11 @@ const Navbar = () => {
                     e.stopPropagation();
                     handleSelectBatchOption(option);
                   }}
-                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${selectedBatchOption === option
+                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${
+                    selectedBatchOption === option
                       ? 'text-[#163f98] font-semibold bg-[#b1e1ff]'
                       : 'text-gray-700'
-                    }`}
+                  }`}
                 >
                   {option}
                 </li>
@@ -167,13 +202,39 @@ const Navbar = () => {
           )}
         </div>
 
-        <div>
-          Reports
+        {/* Reports */}
+        <div
+          className="mx-4 rounded-lg p-3 bg-[#ffffff] duration-300 cursor-pointer"
+          onClick={() => {
+            setIsReportOpen(!isReportOpen);
+            resetAllExcept('report');
+          }}
+        >
+          <div className="text-xl text-gray-800">Reports</div>
+          {isReportOpen && (
+            <ul className="mt-3 space-y-2">
+              {reportOptions.map((option) => (
+                <li
+                  key={option}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSelectReportOption(option);
+                  }}
+                  className={`p-2 rounded hover:bg-blue-50 transition-colors ${
+                    selectedReportOption === option
+                      ? 'text-[#163f98] font-semibold bg-[#b1e1ff]'
+                      : 'text-gray-700'
+                  }`}
+                >
+                  {option}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

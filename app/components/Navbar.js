@@ -65,7 +65,7 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-gray-100 shadow-xl h-fit w-72 rounded-lg flex flex-col gap-y-6 pb-6">
-        <div className="text-xl font-bold text-gray-800 p-6">Navigation</div>
+        <div className="text-xl font-bold text-gray-800 pl-4 pt-6">Navigation</div>
 
         {/* Dashboard */}
         <div

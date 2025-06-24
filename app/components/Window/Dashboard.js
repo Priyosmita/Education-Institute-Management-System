@@ -3,7 +3,7 @@ import React from 'react'
 const Dashboard = () => {
     return (
         <>
-            <div className="bg-white shadow-xl h-fit w-full rounded-lg p-10">
+            <div className="bg-white shadow-2xl h-fit w-full rounded-lg p-10">
                 <div className="text-2xl font-semibold text-gray-700 pb-3">Dashboard Overview</div>
                 <hr className="font-bold border-1 text-gray-200" />
 

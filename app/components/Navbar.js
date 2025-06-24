@@ -9,18 +9,23 @@ const Navbar = () => {
 
   const [isStudentOpen, setIsStudentOpen] = useState(false);
   const [selectedStudentOption, setSelectedStudentOption] = useState(null);
+  const studentOptions = ['Add New Student', 'View Student Details'];
 
   const [isTeacherOpen, setIsTeacherOpen] = useState(false);
   const [selectedTeacherOption, setSelectedTeacherOption] = useState(null);
+  const teacherOptions = ['Add New Teacher', 'View Teacher Details'];
 
   const [isFeeOpen, setIsFeeOpen] = useState(false);
   const [selectedFeeOption, setSelectedFeeOption] = useState(null);
+  const feeOptions = ['Recieve Fees', 'Discounts to Students'];
 
   const [isBatchOpen, setIsBatchOpen] = useState(false);
   const [selectedBatchOption, setSelectedBatchOption] = useState(null);
+  const batchOptions = ['Add New Batch', 'Batch Details', 'Add Subject'];
 
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [selectedReportOption, setSelectedReportOption] = useState(null);
+  const reportOptions = ['Student Report', 'Teacher Report', 'Course Report', 'Expense Report', 'Batch Report', 'Fees Report'];
 
   const resetAllExcept = (section) => {
     if (section !== 'dashboard') setSelectedDashboard(false);
@@ -48,10 +53,13 @@ const Navbar = () => {
         title="Students"
         isOpen={isStudentOpen}
         setIsOpen={setIsStudentOpen}
-        options={['Add New Student', 'View Student Details']}
+        options={studentOptions}
         selectedOption={selectedStudentOption}
-        onSelect={setSelectedStudentOption}
-        resetAllExcept={resetAllExcept}
+        onSelect={(option) => {
+          setSelectedStudentOption(option);
+          setSelectedView(option); // triggers Window to update
+          resetAllExcept('student');
+        }}
       />
 
       <DropdownSection
@@ -59,10 +67,13 @@ const Navbar = () => {
         title="Teachers"
         isOpen={isTeacherOpen}
         setIsOpen={setIsTeacherOpen}
-        options={['Add New Teacher', 'View Teacher Details']}
+        options={teacherOptions}
         selectedOption={selectedTeacherOption}
-        onSelect={setSelectedTeacherOption}
-        resetAllExcept={resetAllExcept}
+        onSelect={(option) => {
+          setSelectedStudentOption(option);
+          setSelectedView(option); // triggers Window to update
+          resetAllExcept('teacher');
+        }}
       />
 
       <DropdownSection
@@ -70,10 +81,13 @@ const Navbar = () => {
         title="Fees"
         isOpen={isFeeOpen}
         setIsOpen={setIsFeeOpen}
-        options={['Recieve Fees', 'Discounts to Students']}
+        options={feeOptions}
         selectedOption={selectedFeeOption}
-        onSelect={setSelectedFeeOption}
-        resetAllExcept={resetAllExcept}
+        onSelect={(option) => {
+          setSelectedStudentOption(option);
+          setSelectedView(option); // triggers Window to update
+          resetAllExcept('fee');
+        }}
       />
 
       <DropdownSection
@@ -81,10 +95,13 @@ const Navbar = () => {
         title="Batches"
         isOpen={isBatchOpen}
         setIsOpen={setIsBatchOpen}
-        options={['Add New Batch', 'Batch Details', 'Add Subject']}
+        options={batchOptions}
         selectedOption={selectedBatchOption}
-        onSelect={setSelectedBatchOption}
-        resetAllExcept={resetAllExcept}
+        onSelect={(option) => {
+          setSelectedStudentOption(option);
+          setSelectedView(option); // triggers Window to update
+          resetAllExcept('batch');
+        }}
       />
 
       <DropdownSection
@@ -92,17 +109,13 @@ const Navbar = () => {
         title="Reports"
         isOpen={isReportOpen}
         setIsOpen={setIsReportOpen}
-        options={[
-          'Student Report',
-          'Teacher Report',
-          'Course Report',
-          'Expense Report',
-          'Batch Report',
-          'Fees Report'
-        ]}
+        options={reportOptions}
         selectedOption={selectedReportOption}
-        onSelect={setSelectedReportOption}
-        resetAllExcept={resetAllExcept}
+        onSelect={(option) => {
+          setSelectedStudentOption(option);
+          setSelectedView(option); // triggers Window to update
+          resetAllExcept('report');
+        }}
       />
     </div>
   );

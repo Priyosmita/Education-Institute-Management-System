@@ -4,7 +4,7 @@ const Dashboard = () => {
     return (
         <>
             <div className="bg-white shadow-xl h-fit w-full rounded-lg p-10">
-                <div className="text-2xl font-bold text-gray-800 pb-3">Dashboard Overview</div>
+                <div className="text-2xl font-semibold text-gray-700 pb-3">Dashboard Overview</div>
                 <hr className="font-bold border-1 text-gray-200" />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8 pt-6">
@@ -33,6 +33,10 @@ const Dashboard = () => {
                         <div className="text-teal-800 text-lg">Collections This Month</div>
                     </div>
 
+                </div>
+
+                <div className='bg-white border-2 shadow-md rounded-lg'>
+                    <p className='text-xl font-semibold text-gray-700 p-6'>Month-wise Student Enrollment</p>
                 </div>
             </div>
 

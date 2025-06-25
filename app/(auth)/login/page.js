@@ -63,7 +63,7 @@ const page = () => {
 
               <span
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 pr-8 top-1/2 transform -translate-y-1/2 text-gray-800 cursor-pointer"
+                className="absolute right-3 pr-8 top-1/2 transform -translate-y-1/2 cursor-pointer text-blue-700"
               >
                 {showPassword ? (
                   <FaEye className="text-3xl" />

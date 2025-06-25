@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from 'next/link';
 import { auth } from "@/lib/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const Page = () => {
 

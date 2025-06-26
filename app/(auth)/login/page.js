@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash, FaKey  } from "react-icons/fa";
 import Link from 'next/link';
 import { auth } from "@/lib/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { IoPersonSharp } from "react-icons/io5";
 
 const Page = () => {
@@ -26,17 +26,37 @@ const Page = () => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    if (!email) {
+      alert("Please enter your email to reset password.");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Password reset email sent!");
+    } catch (error) {
+      console.error("Reset error:", error.message);
+      alert("Error sending reset email. Check the email address.");
+    }
+  };
+
   return (
     <div className='h-screen bg-gray-300 flex items-center justify-center'>
+      <div>
+        
+      </div>
       <div className='rounded-lg border-black border-4 bg-white shadow-2xl p-10'>
         <div className='flex justify-center'>
-          <p className='text-gray-800 font-semibold text-2xl pt-2 pb-4'>
-            Unique Educational Institution
-          </p>
+          <img 
+          src="/logo.png" 
+          alt="Unique Education Institution" 
+          width="150"
+          height="150"
+          />
         </div>
 
         <form onSubmit={handleSubmit}>
-          <p className="mb-4 text-gray-700 text-xl">Please login to your account</p>
+          <p className="mb-4 mt-2 text-gray-700 text-xl">Please login to your account</p>
 
           <label className='text-gray-700'>Email/Mobile Number:</label>
           <div className='flex flex-row pb-4'>
@@ -80,13 +100,23 @@ const Page = () => {
           </div>
 
           <div className="flex items-center justify-between pb-4">
-            <p className="text-gray-600">Don&apos;t have an account?</p>
+            <p className="text-sm text-gray-600">Don&apos;t have an account?</p>
             <Link
               href="/signup"
-              className="transform transition duration-300 hover:scale-110 hover:text-blue-700  text-gray-600"
+              className="text-sm hover:underline hover:text-blue-700 text-gray-600"
             >
               Register
             </Link>
+          </div>
+
+          <div className="text-right pt-2">
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="text-sm hover:text-blue-700 text-gray-600 hover:underline"
+            >
+              Forgot Password?
+            </button>
           </div>
         </form>
       </div>

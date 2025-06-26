@@ -27,10 +27,10 @@ const Page = () => {
 
   return (
     <div className='h-screen bg-gray-300 flex items-center justify-center'>
-      <div className='rounded-lg bg-white shadow-2xl p-10'>
+      <div className='rounded-lg border-black border-4 bg-white shadow-2xl p-10'>
         <div className='flex justify-center'>
           <p className='text-gray-800 font-semibold text-2xl pt-2 pb-4'>
-            Education Institute Management System
+            Unique Educational Institution
           </p>
         </div>
 

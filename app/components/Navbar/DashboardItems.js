@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { BiSolidDashboard } from "react-icons/bi";
 
 const DashboardItem = ({ isSelected, onClick }) => {
   const classes = isSelected
@@ -11,7 +12,10 @@ const DashboardItem = ({ isSelected, onClick }) => {
       className={`mx-4 hover:bg-gray-400 rounded-lg p-3 duration-300 cursor-pointer transition-colors ${classes}`}
       onClick={onClick}
     >
-      <div className="text-xl">Dashboard</div>
+      <div className='flex flex-row gap-x-2'>
+        <BiSolidDashboard className='text-2xl'/>
+        <div className="text-xl">Dashboard</div>
+      </div>
     </div>
   );
 };

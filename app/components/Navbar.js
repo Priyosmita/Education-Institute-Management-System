@@ -3,8 +3,12 @@ import React, { useState } from 'react';
 
 import DashboardItem from './Navbar/DashboardItems';
 import DropdownSection from './Navbar/Dropdown';
+import { PiStudentBold } from "react-icons/pi";
+import { FaChalkboardTeacher, FaMoneyBill } from "react-icons/fa";
+import { RiTeamFill } from "react-icons/ri";
+import { TbReportAnalytics } from "react-icons/tb";
 
-const Navbar = ({setSelectedView}) => {
+const Navbar = ({ setSelectedView }) => {
   const [selectedDashboard, setSelectedDashboard] = useState(false);
 
   const [isStudentOpen, setIsStudentOpen] = useState(false);
@@ -46,10 +50,11 @@ const Navbar = ({setSelectedView}) => {
           setSelectedDashboard(true);
           resetAllExcept('dashboard');
         }}
-        resetAllExcept={resetAllExcept} 
+        resetAllExcept={resetAllExcept}
       />
 
       <DropdownSection
+        icon={<PiStudentBold />}
         id="student"
         title="Students"
         isOpen={isStudentOpen}
@@ -61,10 +66,11 @@ const Navbar = ({setSelectedView}) => {
           setSelectedView(option); // triggers Window to update
           resetAllExcept('student');
         }}
-        resetAllExcept={resetAllExcept} 
+        resetAllExcept={resetAllExcept}
       />
 
       <DropdownSection
+        icon={<FaChalkboardTeacher />}
         id="teacher"
         title="Teachers"
         isOpen={isTeacherOpen}
@@ -76,10 +82,11 @@ const Navbar = ({setSelectedView}) => {
           setSelectedView(option); // triggers Window to update
           resetAllExcept('teacher');
         }}
-        resetAllExcept={resetAllExcept} 
+        resetAllExcept={resetAllExcept}
       />
 
       <DropdownSection
+        icon={<FaMoneyBill />}
         id="fee"
         title="Fees"
         isOpen={isFeeOpen}
@@ -91,10 +98,11 @@ const Navbar = ({setSelectedView}) => {
           setSelectedView(option); // triggers Window to update
           resetAllExcept('fee');
         }}
-        resetAllExcept={resetAllExcept} 
+        resetAllExcept={resetAllExcept}
       />
 
       <DropdownSection
+        icon={<RiTeamFill />}
         id="batch"
         title="Batches"
         isOpen={isBatchOpen}
@@ -106,10 +114,11 @@ const Navbar = ({setSelectedView}) => {
           setSelectedView(option); // triggers Window to update
           resetAllExcept('batch');
         }}
-        resetAllExcept={resetAllExcept} 
+        resetAllExcept={resetAllExcept}
       />
 
       <DropdownSection
+        icon={<TbReportAnalytics />}
         id="report"
         title="Reports"
         isOpen={isReportOpen}
@@ -121,7 +130,7 @@ const Navbar = ({setSelectedView}) => {
           setSelectedView(option); // triggers Window to update
           resetAllExcept('report');
         }}
-        resetAllExcept={resetAllExcept} 
+        resetAllExcept={resetAllExcept}
       />
     </div>
   );

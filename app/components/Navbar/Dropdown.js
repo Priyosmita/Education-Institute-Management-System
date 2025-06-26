@@ -2,6 +2,7 @@
 import React from 'react';
 
 const DropdownSection = ({
+  icon,
   title,
   isOpen,
   setIsOpen,
@@ -13,13 +14,18 @@ const DropdownSection = ({
 }) => {
   return (
     <div
-      className="mx-4 rounded-lg p-3 bg-gray-200 duration-300 cursor-pointer"
+      className={`mx-4 rounded-lg p-3 bg-gray-200 duration-300 cursor-pointer transition ${
+    !isOpen ? 'hover:bg-gray-400' : 'bg-gray-200'
+  }`}
       onClick={() => {
         setIsOpen(!isOpen);
         resetAllExcept(id);
       }}
     >
-      <div className="text-xl text-gray-800">{title}</div>
+      <div className="flex items-center gap-2 text-xl text-gray-800">
+        {icon && <span className="text-gray-800 text-3xl">{icon}</span>}
+        <div className="text-xl text-gray-800">{title}</div>
+      </div>
       {isOpen && (
         <ul className="mt-3 space-y-2">
           {options.map((option) => (

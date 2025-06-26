@@ -65,14 +65,14 @@ const Page = () => {
           <form onSubmit={handleSubmit}>
             <p className="mb-4 mt-2 text-gray-700 text-xl">Please login to your account</p>
 
-            <label className='text-gray-700'>Email/Mobile Number:</label>
+            <label className='text-gray-700'>Email:</label>
             <div className='flex flex-row pb-4'>
               <div className='bg-blue-900'><IoPersonSharp className='text-2xl text-white mt-2 mr-4 ml-4' /></div>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Login email/mobile number"
+                placeholder="Login email id"
                 className=" w-full p-2 bg-gray-200 text-black"
                 required
               />

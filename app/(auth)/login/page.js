@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaKey  } from "react-icons/fa";
 import Link from 'next/link';
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -38,41 +38,42 @@ const Page = () => {
         <form onSubmit={handleSubmit}>
           <p className="mb-4 text-gray-700 text-xl">Please login to your account</p>
 
-          <label className='text-gray-700'>Email/Phone Number:</label>
+          <label className='text-gray-700'>Email/Mobile Number:</label>
           <div className='flex flex-row pb-4'>
-            <div className='bg-blue-700'><IoPersonSharp className='text-2xl text-white mt-2 mr-4 ml-4'/></div>
+            <div className='bg-blue-900'><IoPersonSharp className='text-2xl text-white mt-2 mr-4 ml-4'/></div>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Please enter your email"
+              placeholder="Login email/mobile number"
               className=" w-full p-2 bg-gray-200 text-black"
               required
             />
           </div>
 
           <label className='text-gray-700'>Password:</label>
-          <div className="relative mb-4">
+          <div className="flex flex-row mb-4">
+            <div className='bg-blue-900'><FaKey className='text-2xl text-white mt-2 mr-4 ml-4'/></div>
             <input
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Please enter your password"
-              className="w-full p-2 bg-gray-200 text-black rounded-md"
+              placeholder="Password"
+              className="w-full p-2 bg-gray-200 text-black"
               required
             />
-            <span
+            <div
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-blue-700"
+              className="cursor-pointer text-gray-700 bg-gray-300"
             >
-              {showPassword ? <FaEye className="text-2xl" /> : <FaEyeSlash className="text-2xl" />}
-            </span>
+              {showPassword ? <FaEye className="text-2xl mt-2 mr-4 ml-4" /> : <FaEyeSlash className="text-2xl mt-2 mr-4 ml-4" />}
+            </div>
           </div>
 
-          <div className="mb-6 text-center">
+          <div className="mb-6 pt-4">
             <button
               type="submit"
-              className='px-6 py-2 rounded-3xl transform transition duration-300 hover:scale-110 hover:bg-blue-700 bg-blue-300 text-black hover:text-white'
+              className='px-8 py-1 rounded-lg transform transition duration-300 hover:scale-110 hover:bg-red-700 bg-red-500 text-white'
             >
               Login
             </button>

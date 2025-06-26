@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from 'next/link';
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { IoPersonSharp } from "react-icons/io5";
 
 const Page = () => {
   const [email, setEmail] = useState("");
@@ -37,15 +38,18 @@ const Page = () => {
         <form onSubmit={handleSubmit}>
           <p className="mb-4 text-gray-700 text-xl">Please login to your account</p>
 
-          <label className='text-gray-700'>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Please enter your email"
-            className="mb-4 w-full p-2 bg-gray-200 text-black rounded-md"
-            required
-          />
+          <label className='text-gray-700'>Email/Phone Number:</label>
+          <div className='flex flex-row pb-4'>
+            <div className='bg-blue-700'><IoPersonSharp className='text-2xl text-white mt-2 mr-4 ml-4'/></div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Please enter your email"
+              className=" w-full p-2 bg-gray-200 text-black"
+              required
+            />
+          </div>
 
           <label className='text-gray-700'>Password:</label>
           <div className="relative mb-4">

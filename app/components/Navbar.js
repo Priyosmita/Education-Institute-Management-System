@@ -78,7 +78,7 @@ const Navbar = ({ setSelectedView }) => {
         options={teacherOptions}
         selectedOption={selectedTeacherOption}
         onSelect={(option) => {
-          setSelectedStudentOption(option);
+          setSelectedTeacherOption(option);
           setSelectedView(option); // triggers Window to update
           resetAllExcept('teacher');
         }}

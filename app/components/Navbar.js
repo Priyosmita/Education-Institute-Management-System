@@ -126,7 +126,7 @@ const Navbar = ({ setSelectedView }) => {
         options={reportOptions}
         selectedOption={selectedReportOption}
         onSelect={(option) => {
-          setSelectedStudentOption(option);
+          setSelectedReportOption(option);
           setSelectedView(option); // triggers Window to update
           resetAllExcept('report');
         }}

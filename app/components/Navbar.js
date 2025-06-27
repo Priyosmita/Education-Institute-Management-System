@@ -110,7 +110,7 @@ const Navbar = ({ setSelectedView }) => {
         options={batchOptions}
         selectedOption={selectedBatchOption}
         onSelect={(option) => {
-          setSelectedStudentOption(option);
+          setSelectedBatchOption(option);
           setSelectedView(option); // triggers Window to update
           resetAllExcept('batch');
         }}

@@ -94,7 +94,7 @@ const Navbar = ({ setSelectedView }) => {
         options={feeOptions}
         selectedOption={selectedFeeOption}
         onSelect={(option) => {
-          setSelectedStudentOption(option);
+          setSelectedFeeOption(option);
           setSelectedView(option); // triggers Window to update
           resetAllExcept('fee');
         }}

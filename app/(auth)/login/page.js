@@ -51,7 +51,7 @@ const Page = () => {
               className='rounded-lg shadow-2xl' 
             />
 
-        <div className='rounded-lg border-black border-4 bg-white shadow-2xl p-10 mt-4'>
+        <div className='rounded-lg border-black border-4 bg-white shadow-2xl p-14'>
           <div className='flex justify-center'>
             <Image
               src="/logo.png"
@@ -62,9 +62,9 @@ const Page = () => {
           </div>
 
           <form onSubmit={handleSubmit}>
-            <p className="mb-4 mt-4 text-gray-700 text-xl">Please login to your account</p>
+            <p className="mb-4 mt-6 text-gray-700 text-2xl">Please login to your account</p>
 
-            <label className='text-gray-700'>Email:</label>
+            <label className='text-gray-700 text-lg'>Email:</label>
             <div className='flex flex-row pb-4'>
               <div className='bg-blue-900'><IoPersonSharp className='text-2xl text-white mt-2 mr-4 ml-4' /></div>
               <input
@@ -77,7 +77,7 @@ const Page = () => {
               />
             </div>
 
-            <label className='text-gray-700'>Password:</label>
+            <label className='text-gray-700 text-lg'>Password:</label>
             <div className="flex flex-row mb-4">
               <div className='bg-blue-900'><FaKey className='text-2xl text-white mt-2 mr-4 ml-4' /></div>
               <input
@@ -99,27 +99,17 @@ const Page = () => {
             <div className="mb-6 pt-4">
               <button
                 type="submit"
-                className='px-8 py-1 rounded-lg transform transition duration-300 hover:scale-110 hover:bg-red-700 bg-red-500 text-white'
+                className='px-8 py-1 rounded-lg transform transition duration-300 hover:scale-110 hover:bg-red-700 bg-red-500 text-white text-lg'
               >
                 Login
               </button>
             </div>
 
-            {/* <div className="flex items-center justify-between pb-4">
-              <p className="text-sm text-gray-600">Don&apos;t have an account?</p>
-              <Link
-                href="/signup"
-                className="text-sm hover:underline hover:text-blue-700 text-gray-600"
-              >
-                Register
-              </Link>
-            </div> */}
-
             <div className="text-right pt-2">
               <button
                 type="button"
                 onClick={handleForgotPassword}
-                className="text-sm hover:text-blue-700 text-gray-600 hover:underline"
+                className="text-md hover:text-blue-700 text-gray-600 hover:underline"
               >
                 Forgot Password?/Reset Password
               </button>

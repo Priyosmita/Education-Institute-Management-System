@@ -14,15 +14,11 @@ const Page = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      const isFirstTime = localStorage.getItem('firstTimeUser');
-
-      if (!user && !isFirstTime) {
-        localStorage.setItem('firstTimeUser', 'true');
-        router.push('/signup');
-      } else if (!user && isFirstTime) {
+      if (!user) {
+        // Always redirect to login page if not authenticated
         router.push('/login');
       } else {
-        setLoading(false); // User is logged in, show dashboard
+        setLoading(false); // Authenticated user, allow access
       }
     });
 

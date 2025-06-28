@@ -15,10 +15,9 @@ const Page = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        // Always redirect to login page if not authenticated
-        router.push('/login');
+        router.push('/login');  // always redirect to login page if not authenticated
       } else {
-        setLoading(false); // Authenticated user, allow access
+        setLoading(false); // authenticated user, allow access
       }
     });
 

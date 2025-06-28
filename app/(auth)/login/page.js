@@ -52,7 +52,7 @@ const Page = () => {
               className='rounded-lg shadow-2xl' 
             />
 
-        <div className='rounded-lg border-black border-4 bg-white shadow-2xl p-10'>
+        <div className='rounded-lg border-black border-4 bg-white shadow-2xl p-10 mt-4'>
           <div className='flex justify-center'>
             <Image
               src="/logo.png"
@@ -63,7 +63,7 @@ const Page = () => {
           </div>
 
           <form onSubmit={handleSubmit}>
-            <p className="mb-4 mt-2 text-gray-700 text-xl">Please login to your account</p>
+            <p className="mb-4 mt-4 text-gray-700 text-xl">Please login to your account</p>
 
             <label className='text-gray-700'>Email:</label>
             <div className='flex flex-row pb-4'>
@@ -106,7 +106,7 @@ const Page = () => {
               </button>
             </div>
 
-            <div className="flex items-center justify-between pb-4">
+            {/* <div className="flex items-center justify-between pb-4">
               <p className="text-sm text-gray-600">Don&apos;t have an account?</p>
               <Link
                 href="/signup"
@@ -114,7 +114,7 @@ const Page = () => {
               >
                 Register
               </Link>
-            </div>
+            </div> */}
 
             <div className="text-right pt-2">
               <button

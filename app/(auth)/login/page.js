@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
-import Link from 'next/link';
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { IoPersonSharp } from "react-icons/io5";
@@ -122,7 +121,7 @@ const Page = () => {
                 onClick={handleForgotPassword}
                 className="text-sm hover:text-blue-700 text-gray-600 hover:underline"
               >
-                Forgot Password?
+                Forgot Password?/Reset Password
               </button>
             </div>
           </form>

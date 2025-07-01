@@ -1,137 +1,125 @@
-'use client';
+'use client'
 import React, { useState } from 'react';
-
-import DashboardItem from './Navbar/DashboardItems';
 import DropdownSection from './Navbar/Dropdown';
 import { PiStudentBold } from "react-icons/pi";
 import { FaChalkboardTeacher, FaMoneyBill } from "react-icons/fa";
 import { RiTeamFill } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
+import { BiSolidDashboard } from "react-icons/bi";
+
+const navSections = [
+  {
+    id: "dashboard",
+    title: "Dashboard",
+    icon: <BiSolidDashboard className='text-2xl' />,
+    options: [],
+  },
+  {
+    id: "student",
+    title: "Students",
+    icon: <PiStudentBold />,
+    options: ['Add New Student', 'View Student Details'],
+  },
+  {
+    id: "teacher",
+    title: "Teachers",
+    icon: <FaChalkboardTeacher />,
+    options: ['Add New Teacher', 'View Teacher Details'],
+  },
+  {
+    id: "fee",
+    title: "Fees",
+    icon: <FaMoneyBill />,
+    options: ['Recieve Fees', 'Discounts to Students'],
+  },
+  {
+    id: "batch",
+    title: "Batches",
+    icon: <RiTeamFill />,
+    options: ['Add New Batch', 'Batch Details', 'Add Subject'],
+  },
+  {
+    id: "report",
+    title: "Reports",
+    icon: <TbReportAnalytics />,
+    options: [
+      'Student Report',
+      'Teacher Report',
+      'Course Report',
+      'Expense Report',
+      'Batch Report',
+      'Fees Report',
+    ],
+  }
+];
 
 const Navbar = ({ setSelectedView }) => {
-  const [selectedDashboard, setSelectedDashboard] = useState(false);
+  const [openStates, setOpenStates] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState({});
 
-  const [isStudentOpen, setIsStudentOpen] = useState(false);
-  const [selectedStudentOption, setSelectedStudentOption] = useState(null);
-  const studentOptions = ['Add New Student', 'View Student Details'];
+  // Collapse all dropdowns except one
+  const resetAllExcept = (sectionId) => {
+    const newStates = {};
+    navSections.forEach(({ id }) => {
+      newStates[id] = id === sectionId;
+    });
+    setOpenStates(newStates);
+  };
 
-  const [isTeacherOpen, setIsTeacherOpen] = useState(false);
-  const [selectedTeacherOption, setSelectedTeacherOption] = useState(null);
-  const teacherOptions = ['Add New Teacher', 'View Teacher Details'];
+  // Handle option selection & reset other 
+  const handleSelect = (sectionId, option) => {
+    const newSelectedOptions = {};
+    navSections.forEach(({ id }) => {
+      newSelectedOptions[id] = id === sectionId ? option : null;
+    });
+    setSelectedOptions(newSelectedOptions);
+    setSelectedView(option);
+    resetAllExcept(sectionId);
+  };
 
-  const [isFeeOpen, setIsFeeOpen] = useState(false);
-  const [selectedFeeOption, setSelectedFeeOption] = useState(null);
-  const feeOptions = ['Recieve Fees', 'Discounts to Students'];
-
-  const [isBatchOpen, setIsBatchOpen] = useState(false);
-  const [selectedBatchOption, setSelectedBatchOption] = useState(null);
-  const batchOptions = ['Add New Batch', 'Batch Details', 'Add Subject'];
-
-  const [isReportOpen, setIsReportOpen] = useState(false);
-  const [selectedReportOption, setSelectedReportOption] = useState(null);
-  const reportOptions = ['Student Report', 'Teacher Report', 'Course Report', 'Expense Report', 'Batch Report', 'Fees Report'];
-
-  const resetAllExcept = (section) => {
-    if (section !== 'dashboard') setSelectedDashboard(false);
-    if (section !== 'student') setIsStudentOpen(false);
-    if (section !== 'teacher') setIsTeacherOpen(false);
-    if (section !== 'fee') setIsFeeOpen(false);
-    if (section !== 'batch') setIsBatchOpen(false);
-    if (section !== 'report') setIsReportOpen(false);
+  // Handle single-click
+  const handleSingleClick = (sectionId, title) => {
+    const newSelectedOptions = {};
+    navSections.forEach(({ id }) => {
+      newSelectedOptions[id] = null;
+    });
+    setSelectedOptions(newSelectedOptions);
+    setSelectedView(title);
+    resetAllExcept(sectionId);
   };
 
   return (
     <div className="bg-white shadow-2xl h-fit w-64 rounded-lg flex flex-col gap-y-6 pb-6">
       <div className="text-xl font-bold text-gray-800 pl-4 pt-6">Navigation</div>
 
-      <DashboardItem
-        isSelected={selectedDashboard}
-        onClick={() => {
-          setSelectedDashboard(true);
-          resetAllExcept('dashboard');
-        }}
-        resetAllExcept={resetAllExcept}
-      />
-
-      <DropdownSection
-        icon={<PiStudentBold />}
-        id="student"
-        title="Students"
-        isOpen={isStudentOpen}
-        setIsOpen={setIsStudentOpen}
-        options={studentOptions}
-        selectedOption={selectedStudentOption}
-        onSelect={(option) => {
-          setSelectedStudentOption(option);
-          setSelectedView(option); // triggers Window to update
-          resetAllExcept('student');
-        }}
-        resetAllExcept={resetAllExcept}
-      />
-
-      <DropdownSection
-        icon={<FaChalkboardTeacher />}
-        id="teacher"
-        title="Teachers"
-        isOpen={isTeacherOpen}
-        setIsOpen={setIsTeacherOpen}
-        options={teacherOptions}
-        selectedOption={selectedTeacherOption}
-        onSelect={(option) => {
-          setSelectedTeacherOption(option);
-          setSelectedView(option); // triggers Window to update
-          resetAllExcept('teacher');
-        }}
-        resetAllExcept={resetAllExcept}
-      />
-
-      <DropdownSection
-        icon={<FaMoneyBill />}
-        id="fee"
-        title="Fees"
-        isOpen={isFeeOpen}
-        setIsOpen={setIsFeeOpen}
-        options={feeOptions}
-        selectedOption={selectedFeeOption}
-        onSelect={(option) => {
-          setSelectedFeeOption(option);
-          setSelectedView(option); // triggers Window to update
-          resetAllExcept('fee');
-        }}
-        resetAllExcept={resetAllExcept}
-      />
-
-      <DropdownSection
-        icon={<RiTeamFill />}
-        id="batch"
-        title="Batches"
-        isOpen={isBatchOpen}
-        setIsOpen={setIsBatchOpen}
-        options={batchOptions}
-        selectedOption={selectedBatchOption}
-        onSelect={(option) => {
-          setSelectedBatchOption(option);
-          setSelectedView(option); // triggers Window to update
-          resetAllExcept('batch');
-        }}
-        resetAllExcept={resetAllExcept}
-      />
-
-      <DropdownSection
-        icon={<TbReportAnalytics />}
-        id="report"
-        title="Reports"
-        isOpen={isReportOpen}
-        setIsOpen={setIsReportOpen}
-        options={reportOptions}
-        selectedOption={selectedReportOption}
-        onSelect={(option) => {
-          setSelectedReportOption(option);
-          setSelectedView(option); // triggers Window to update
-          resetAllExcept('report');
-        }}
-        resetAllExcept={resetAllExcept}
-      />
+      {navSections.map(({ id, title, icon, options }) =>
+        options.length === 0 ? (
+          <div
+            key={id}
+            onClick={() => handleSingleClick(id, title)}
+            className="mx-4 text-xl rounded-lg p-3 bg-gray-200 duration-300 cursor-pointer hover:bg-gray-400 transition flex items-center gap-2 text-gray-800"
+          >
+            {icon}
+            {title}
+          </div>
+        ) : (
+          <DropdownSection
+            key={id}
+            id={id}
+            icon={icon}
+            title={title}
+            isOpen={!!openStates[id]}
+            setIsOpen={(value) => {
+              setOpenStates((prev) => ({ ...prev, [id]: value }));
+              resetAllExcept(id);
+            }}
+            options={options}
+            selectedOption={selectedOptions[id]}
+            onSelect={(option) => handleSelect(id, option)}
+            resetAllExcept={resetAllExcept}
+          />
+        )
+      )}
     </div>
   );
 };

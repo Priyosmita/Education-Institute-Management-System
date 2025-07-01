@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React from 'react';
 
 const DropdownSection = ({
@@ -14,20 +14,23 @@ const DropdownSection = ({
 }) => {
   return (
     <div
-      className={`mx-4 rounded-lg p-3 bg-gray-200 duration-300 cursor-pointer transition ${
-    !isOpen ? 'hover:bg-gray-400' : 'bg-gray-200'
-  }`}
+      className={`mx-4 rounded-lg p-3 transition-colors duration-300 cursor-pointer ${
+        isOpen ? 'bg-gray-200' : 'bg-gray-200 hover:bg-gray-400'
+      }`}
       onClick={() => {
         setIsOpen(!isOpen);
         resetAllExcept(id);
       }}
     >
-      <div className="flex items-center gap-2 text-xl text-gray-800">
-        {icon && <span className="text-gray-800 text-3xl">{icon}</span>}
-        <div className="text-xl text-gray-800">{title}</div>
+      {/* Section Header */}
+      <div className="flex items-center gap-2 text-xl font-medium text-gray-800">
+        {icon && <span className="text-3xl">{icon}</span>}
+        <span>{title}</span>
       </div>
-      {isOpen && (
-        <ul className="mt-3 space-y-2">
+
+      {/* Dropdown Items */}
+      {isOpen && options.length > 0 && (
+        <ul className="mt-3 space-y-2 pl-2">
           {options.map((option) => (
             <li
               key={option}
@@ -35,10 +38,10 @@ const DropdownSection = ({
                 e.stopPropagation();
                 onSelect(option);
               }}
-              className={`p-2 rounded hover:bg-gray-400 transition-colors ${
+              className={`p-2 rounded-md text-sm sm:text-base transition-colors ${
                 selectedOption === option
-                  ? 'text-white bg-blue-600'
-                  : 'text-gray-700'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-gray-800 hover:bg-gray-300'
               }`}
             >
               {option}

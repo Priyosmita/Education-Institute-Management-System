@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import DropdownSection from './Navbar/Dropdown';
+import DropdownSection from './Dropdown';
 import { PiStudentBold } from "react-icons/pi";
 import { FaChalkboardTeacher, FaMoneyBill } from "react-icons/fa";
 import { RiTeamFill } from "react-icons/ri";

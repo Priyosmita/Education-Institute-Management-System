@@ -36,21 +36,21 @@ const navSections = [
     id: "batch",
     title: "Batches",
     icon: <RiTeamFill />,
-    options: ['Add New Batch', 'Batch Details', 'Add Subject'],
+    options: ['Add New Batch', 'Batch Details'],
   },
-  {
-    id: "report",
-    title: "Reports",
-    icon: <TbReportAnalytics />,
-    options: [
-      'Student Report',
-      'Teacher Report',
-      'Course Report',
-      'Expense Report',
-      'Batch Report',
-      'Fees Report',
-    ],
-  }
+  // {
+  //   id: "report",
+  //   title: "Reports",
+  //   icon: <TbReportAnalytics />,
+  //   options: [
+  //     'Student Report',
+  //     'Teacher Report',
+  //     'Course Report',
+  //     'Expense Report',
+  //     'Batch Report',
+  //     'Fees Report',
+  //   ],
+  // }
 ];
 
 const Navbar = ({ setSelectedView }) => {

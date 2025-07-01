@@ -60,7 +60,7 @@ const AddNewStudent = () => {
                 value={formData.DateOfAdmission}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 p-2 border border-gray-300 shadow-md rounded-md bg-white text-gray-700"
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
               />
             </div>
             <div>
@@ -71,7 +71,7 @@ const AddNewStudent = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 p-2 border border-gray-300 shadow-md rounded-md bg-white text-gray-700"
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
                 placeholder="Enter full name"
               />
             </div>
@@ -87,7 +87,7 @@ const AddNewStudent = () => {
                 value={formData.StudentID}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 p-2 border border-gray-300 shadow-md rounded-md bg-white text-gray-700"
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
                 placeholder="Enter Student ID"
               />
             </div>
@@ -99,40 +99,37 @@ const AddNewStudent = () => {
                 value={formData.Class}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 p-2 border border-gray-300 shadow-md rounded-md bg-white text-gray-700"
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
                 placeholder="Enter Class"
               />
             </div>
           </div>
 
 
-          {/* Date of Birth & Gender */}
+          {/* Date of Birth & School Name */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-gray-700 font-medium">Date of Birth</label>
               <input
                 type="date"
-                name="dob"
-                value={formData.dob}
+                name="DateOfBirth"
+                value={formData.DateOfBirth}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 p-2 border border-gray-300 rounded-md"
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-medium">Gender</label>
-              <select
-                name="gender"
-                value={formData.gender}
+              <label className="block text-gray-700 font-medium">School Name</label>
+              <input
+                type="text"
+                name="SchoolName"
+                value={formData.SchoolName}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 p-2 border border-gray-300 rounded-md"
-              >
-                <option value="">Select</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                placeholder="Enter School Name"
+              />
             </div>
           </div>
 

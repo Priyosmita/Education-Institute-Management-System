@@ -29,7 +29,7 @@ const Page = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-300">
+    <div className="min-h-screen bg-gray-100">
       <Header />
       <div className="flex flex-row">
         <div className="p-6">

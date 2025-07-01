@@ -56,6 +56,7 @@ const navSections = [
 const Navbar = ({ setSelectedView }) => {
   const [openStates, setOpenStates] = useState({});
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedSection, setSelectedSection] = useState(null);
 
   // Collapse all dropdowns except one
   const resetAllExcept = (sectionId) => {
@@ -74,16 +75,17 @@ const Navbar = ({ setSelectedView }) => {
     });
     setSelectedOptions(newSelectedOptions);
     setSelectedView(option);
+    setSelectedSection(null);
     resetAllExcept(sectionId);
   };
 
-  // Handle single-click
   const handleSingleClick = (sectionId, title) => {
     const newSelectedOptions = {};
     navSections.forEach(({ id }) => {
       newSelectedOptions[id] = null;
     });
     setSelectedOptions(newSelectedOptions);
+    setSelectedSection(sectionId);
     setSelectedView(title);
     resetAllExcept(sectionId);
   };
@@ -97,7 +99,10 @@ const Navbar = ({ setSelectedView }) => {
           <div
             key={id}
             onClick={() => handleSingleClick(id, title)}
-            className="mx-4 text-xl rounded-lg p-3 bg-gray-200 duration-300 cursor-pointer hover:bg-gray-400 transition flex items-center gap-2 text-gray-800"
+            className={`mx-4 text-xl rounded-lg p-3 duration-300 cursor-pointer transition flex items-center gap-2
+              ${selectedSection === id
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 hover:bg-gray-400 text-gray-800'}`}
           >
             {icon}
             {title}

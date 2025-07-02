@@ -19,6 +19,34 @@ const AddNewStudent = () => {
     MedicalConditions: '',
   });
 
+  const [subjectsTaken, setSubjectsTaken] = useState([
+    { subject: '', class: '', batch: '', teacher: '' },
+  ]);
+
+  const subjectOptions = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English'];
+  const classOptions = ['6', '7', '8', '9', '10', '11', '12'];
+  const batchOptions = ['A', 'B', 'C', 'D'];
+  const teacherOptions = ['Mr. Sharma', 'Ms. Roy', 'Dr. Khan', 'Mrs. Das'];
+
+  const handleSubjectChange = (index, field, value) => {
+    const updatedSubjects = [...subjectsTaken];
+    updatedSubjects[index][field] = value;
+    setSubjectsTaken(updatedSubjects);
+  };
+
+  const canAddMoreSubjects = () => {
+    const last = subjectsTaken[subjectsTaken.length - 1];
+    return last.subject && last.class && last.batch && last.teacher;
+  };
+
+  const addSubjectRow = () => {
+    if (canAddMoreSubjects()) {
+      setSubjectsTaken([...subjectsTaken, { subject: '', class: '', batch: '', teacher: '' }]);
+    } else {
+      alert('Please fill all fields of the current subject before adding a new one.');
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -45,6 +73,7 @@ const AddNewStudent = () => {
         SiblingClass: '',
         MedicalConditions: '',
       });
+      setSubjectsTaken([{ subject: '', class: '', batch: '', teacher: '' }]);
     }
   };
 
@@ -70,6 +99,7 @@ const AddNewStudent = () => {
       SiblingClass: '',
       MedicalConditions: '',
     });
+    setSubjectsTaken([{ subject: '', class: '', batch: '', teacher: '' }]);
   };
 
   return (
@@ -278,32 +308,73 @@ const AddNewStudent = () => {
             />
           </div>
 
+
           {/* Subjects Taken */}
           <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
             <p className='text-gray-600 text-xl font-semibold mb-4'>Subjects Taken</p>
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Subject</label>
 
+            {subjectsTaken.map((entry, index) => (
+              <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-gray-700 font-medium">Subject</label>
+                  <select
+                    value={entry.subject}
+                    onChange={(e) => handleSubjectChange(index, 'subject', e.target.value)}
+                    className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                  >
+                    <option value="">Select Subject</option>
+                    {subjectOptions.map((s, i) => (
+                      <option key={i} value={s}>{s}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-medium">Class</label>
+                  <select
+                    value={entry.class}
+                    onChange={(e) => handleSubjectChange(index, 'class', e.target.value)}
+                    className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                  >
+                    <option value="">Select Class</option>
+                    {classOptions.map((c, i) => (
+                      <option key={i} value={c}>{c}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-medium">Batch</label>
+                  <select
+                    value={entry.batch}
+                    onChange={(e) => handleSubjectChange(index, 'batch', e.target.value)}
+                    className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                  >
+                    <option value="">Select Batch</option>
+                    {batchOptions.map((b, i) => (
+                      <option key={i} value={b}>{b}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-medium">Teacher Name</label>
+                  <select
+                    value={entry.teacher}
+                    onChange={(e) => handleSubjectChange(index, 'teacher', e.target.value)}
+                    className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                  >
+                    <option value="">Select Teacher</option>
+                    {teacherOptions.map((t, i) => (
+                      <option key={i} value={t}>{t}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Class</label>
+            ))}
 
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Batch</label>
-
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Teacher Name</label>
-
-              </div>
-            </div>
-            {/* Add More Subjects Button */}
             <div className="pt-4 text-center flex justify-start">
               <button
-                type="addSubjects"
-                className="bg-indigo-500 text-white px-2 py-1 rounded-md hover:bg-indigo-600 transition text-sm font-semibold"
+                type="button"
+                onClick={addSubjectRow}
+                className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition text-sm font-semibold"
               >
                 Add More Subjects
               </button>

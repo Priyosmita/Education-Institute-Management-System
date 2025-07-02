@@ -47,7 +47,7 @@ const AddNewStudent = () => {
       <hr className="font-bold border-1 text-gray-200 mb-6" />
 
       <div className='rounded-lg p-7 bg-blue-50 shadow-xl'>
-        <p className='text-gray-700 text-xl font-medium mb-4'>Student Details</p>
+        <p className='text-gray-700 text-xl font-semibold mb-4'>Student Details</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Date of Admission & Full Name */}
@@ -133,103 +133,159 @@ const AddNewStudent = () => {
             </div>
           </div>
 
-          {/* Email and Phone */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-gray-700 font-medium">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full mt-2 p-2 border border-gray-300 rounded-md"
-                placeholder="example@email.com"
-              />
+          {/* Parents Details */}
+          <div className='bg-white shadow-2xl h-fit w-full rounded-lg p-5 space-y-6'>
+            <p className='text-gray-600 text-xl font-semibold mb-4'>Parents Details</p>
+            {/* Father & Mother's names */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-gray-700 font-medium">Father's Name</label>
+                <input
+                  type="text"
+                  name="FatherName"
+                  value={formData.FatherName}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                  placeholder="Enter Father's Name"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium">Mother's Name</label>
+                <input
+                  type="text"
+                  name="MotherName"
+                  value={formData.MotherName}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                  placeholder="Enter Mother's Name"
+                />
+              </div>
             </div>
+
+            {/* Mobile numbers */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-gray-700 font-medium">Father's Mobile Number</label>
+                <input
+                  type="text"
+                  name="FatherMobileNumber"
+                  value={formData.FatherMobileNumber}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                  placeholder="Enter Father's Mobile Number"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium">Mother's Mobile Number</label>
+                <input
+                  type="text"
+                  name="MotherMobileNumber"
+                  value={formData.MotherMobileNumber}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                  placeholder="Enter Mother's Mobile Number"
+                />
+              </div>
+            </div>
+
+            {/* Whatsapp number */}
             <div>
-              <label className="block text-gray-700 font-medium">Phone</label>
+              <label className="block text-gray-700 font-medium">Whatsapp Number</label>
               <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
+                type="text"
+                name="WhatsappNumber"
+                value={formData.WhatsappNumber}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 p-2 border border-gray-300 rounded-md"
-                placeholder="10-digit phone number"
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                placeholder="Enter Whatsapp Number"
               />
             </div>
           </div>
 
-          {/* Address */}
+          {/* Siblings Details */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-gray-700 font-medium">Sibling's Name</label>
+              <input
+                type="text"
+                name="SiblingName"
+                value={formData.SiblingName}
+                onChange={handleChange}
+                required
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                placeholder="Enter Sibling's Name"
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium">Sibling's Class</label>
+              <input
+                type="text"
+                name="SiblingClass"
+                value={formData.SiblingClass}
+                onChange={handleChange}
+                required
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                placeholder="Enter Sibling's Class"
+              />
+            </div>
+          </div>
           <div>
-            <label className="block text-gray-700 font-medium">Address</label>
-            <textarea
-              name="address"
-              value={formData.address}
+            <label className="block text-gray-700 font-medium">Sibling's School</label>
+            <input
+              type="text"
+              name="SiblingSchool"
+              value={formData.SiblingSchool}
               onChange={handleChange}
               required
-              rows={3}
-              className="w-full mt-2 p-2 border border-gray-300 rounded-md"
-              placeholder="Enter full address"
+              className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+              placeholder="Enter Sibling's School"
             />
           </div>
 
-          {/* Course Selection */}
+          {/* Subjects Taken */}
+
           <div>
-            <label className="block text-gray-700 font-medium">Course</label>
-            <select
-              name="course"
-              value={formData.course}
+            <label className="block text-gray-700 font-medium">Any Medical Conditions</label>
+            <input
+              type="text"
+              name="MedicalConditions"
+              value={formData.MedicalConditions}
               onChange={handleChange}
               required
-              className="w-full mt-2 p-2 border border-gray-300 rounded-md"
-            >
-              <option value="">Select course</option>
-              <option value="Science Foundation">Science Foundation</option>
-              <option value="JEE/NEET">JEE/NEET</option>
-              <option value="Olympiad Prep">Olympiad Prep</option>
-              <option value="Board Coaching">Board Coaching</option>
-            </select>
+              className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+              placeholder="Enter Any Medical Conditions"
+            />
           </div>
 
-          {/* Guardian Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-gray-700 font-medium">Guardian's Name</label>
-              <input
-                type="text"
-                name="guardianName"
-                value={formData.guardianName}
-                onChange={handleChange}
-                required
-                className="w-full mt-2 p-2 border border-gray-300 rounded-md"
-                placeholder="Guardian's full name"
-              />
+
+
+          <div className='flex flex-row justify-end gap-x-4'>
+            {/* Submit Button */}
+            <div className="pt-4 text-center">
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition font-semibold"
+              >
+                Save Student
+              </button>
             </div>
-            <div>
-              <label className="block text-gray-700 font-medium">Guardian's Contact</label>
-              <input
-                type="tel"
-                name="guardianContact"
-                value={formData.guardianContact}
-                onChange={handleChange}
-                required
-                className="w-full mt-2 p-2 border border-gray-300 rounded-md"
-                placeholder="10-digit phone number"
-              />
+
+            {/* Cancel Button */}
+            <div className="pt-4 text-center">
+              <button
+                type="cancel"
+                className="bg-gray-400 text-white px-6 py-2 rounded-md hover:bg-gray-500 transition font-semibold"
+              >
+                Cancel
+              </button>
             </div>
           </div>
 
-          {/* Submit Button */}
-          <div className="pt-4 text-center">
-            <button
-              type="submit"
-              className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition font-semibold"
-            >
-              Submit
-            </button>
-          </div>
         </form>
       </div>
 

@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 const AddNewStudent = () => {
   const [formData, setFormData] = useState({
     DateOfAdmission: '',
-    FullName: '',
+    StudentFullName: '',
     StudentID: '',
-    Class: '',
+    StudentClass: '',
     DateOfBirth: '',
-    SchoolName: '',
+    StudentSchoolName: '',
     FatherName: '',
     MotherName: '',
     FatherMobileNumber: '',
     MotherMobileNumber: '',
-    WhatsappNumber: '',
+    StudentWhatsappNumber: '',
     SiblingName: '',
     SiblingClass: '',
     MedicalConditions: '',
@@ -59,16 +59,16 @@ const AddNewStudent = () => {
     if (window.confirm("Are you sure you want to clear the form?")) {
       setFormData({
         DateOfAdmission: '',
-        FullName: '',
+        StudentFullName: '',
         StudentID: '',
-        Class: '',
+        StudentClass: '',
         DateOfBirth: '',
-        SchoolName: '',
+        StudentSchoolName: '',
         FatherName: '',
         MotherName: '',
         FatherMobileNumber: '',
         MotherMobileNumber: '',
-        WhatsappNumber: '',
+        StudentWhatsappNumber: '',
         SiblingName: '',
         SiblingClass: '',
         MedicalConditions: '',
@@ -85,16 +85,16 @@ const AddNewStudent = () => {
     // Reset form (optional)
     setFormData({
       DateOfAdmission: '',
-      FullName: '',
+      StudentFullName: '',
       StudentID: '',
-      Class: '',
+      StudentClass: '',
       DateOfBirth: '',
-      SchoolName: '',
+      StudentSchoolName: '',
       FatherName: '',
       MotherName: '',
       FatherMobileNumber: '',
       MotherMobileNumber: '',
-      WhatsappNumber: '',
+      StudentWhatsappNumber: '',
       SiblingName: '',
       SiblingClass: '',
       MedicalConditions: '',
@@ -128,8 +128,8 @@ const AddNewStudent = () => {
               <label className="block text-gray-700 font-medium">Full Name</label>
               <input
                 type="text"
-                name="FullName"
-                value={formData.FullName}
+                name="StudentFullName"
+                value={formData.StudentFullName}
                 onChange={handleChange}
                 required
                 className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
@@ -156,8 +156,8 @@ const AddNewStudent = () => {
               <label className="block text-gray-700 font-medium">Class</label>
               <input
                 type="text"
-                name="Class"
-                value={formData.Class}
+                name="StudentClass"
+                value={formData.StudentClass}
                 onChange={handleChange}
                 required
                 className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
@@ -258,8 +258,8 @@ const AddNewStudent = () => {
               <label className="block text-gray-700 font-medium">Whatsapp Number</label>
               <input
                 type="text"
-                name="WhatsappNumber"
-                value={formData.WhatsappNumber}
+                name="StudentWhatsappNumber"
+                value={formData.StudentWhatsappNumber}
                 onChange={handleChange}
                 required
                 className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"

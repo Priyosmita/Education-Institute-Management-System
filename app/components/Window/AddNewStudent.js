@@ -3,15 +3,20 @@ import React, { useState } from 'react';
 
 const AddNewStudent = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    dob: '',
-    gender: '',
-    email: '',
-    phone: '',
-    address: '',
-    course: '',
-    guardianName: '',
-    guardianContact: '',
+    DateOfAdmission: '',
+    FullName: '',
+    StudentID: '',
+    Class: '',
+    DateOfBirth: '',
+    SchoolName: '',
+    FatherName: '',
+    MotherName: '',
+    FatherMobileNumber: '',
+    MotherMobileNumber: '',
+    WhatsappNumber: '',
+    SiblingName: '',
+    SiblingClass: '',
+    MedicalConditions: '',
   });
 
   const handleChange = (e) => {
@@ -22,6 +27,27 @@ const AddNewStudent = () => {
     }));
   };
 
+  const handleCancel = () => {
+    if (window.confirm("Are you sure you want to clear the form?")) {
+      setFormData({
+        DateOfAdmission: '',
+        FullName: '',
+        StudentID: '',
+        Class: '',
+        DateOfBirth: '',
+        SchoolName: '',
+        FatherName: '',
+        MotherName: '',
+        FatherMobileNumber: '',
+        MotherMobileNumber: '',
+        WhatsappNumber: '',
+        SiblingName: '',
+        SiblingClass: '',
+        MedicalConditions: '',
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can send formData to your backend or database here
@@ -29,15 +55,20 @@ const AddNewStudent = () => {
     alert('Student added successfully!');
     // Reset form (optional)
     setFormData({
-      fullName: '',
-      dob: '',
-      gender: '',
-      email: '',
-      phone: '',
-      address: '',
-      course: '',
-      guardianName: '',
-      guardianContact: '',
+      DateOfAdmission: '',
+      FullName: '',
+      StudentID: '',
+      Class: '',
+      DateOfBirth: '',
+      SchoolName: '',
+      FatherName: '',
+      MotherName: '',
+      FatherMobileNumber: '',
+      MotherMobileNumber: '',
+      WhatsappNumber: '',
+      SiblingName: '',
+      SiblingClass: '',
+      MedicalConditions: '',
     });
   };
 
@@ -68,11 +99,11 @@ const AddNewStudent = () => {
               <input
                 type="text"
                 name="FullName"
-                value={formData.fullName}
+                value={formData.FullName}
                 onChange={handleChange}
                 required
                 className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
-                placeholder="Enter full name"
+                placeholder="Enter Student's Full Name"
               />
             </div>
           </div>
@@ -134,7 +165,7 @@ const AddNewStudent = () => {
           </div>
 
           {/* Parents Details */}
-          <div className='bg-white shadow-2xl h-fit w-full rounded-lg p-5 space-y-6'>
+          <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
             <p className='text-gray-600 text-xl font-semibold mb-4'>Parents Details</p>
             {/* Father & Mother's names */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -248,6 +279,36 @@ const AddNewStudent = () => {
           </div>
 
           {/* Subjects Taken */}
+          <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
+            <p className='text-gray-600 text-xl font-semibold mb-4'>Subjects Taken</p>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+              <div>
+                <label className="block text-gray-700 font-medium">Subject</label>
+
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium">Class</label>
+
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium">Batch</label>
+
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium">Teacher Name</label>
+
+              </div>
+            </div>
+            {/* Add More Subjects Button */}
+            <div className="pt-4 text-center flex justify-start">
+              <button
+                type="addSubjects"
+                className="bg-indigo-500 text-white px-2 py-1 rounded-md hover:bg-indigo-600 transition text-sm font-semibold"
+              >
+                Add More Subjects
+              </button>
+            </div>
+          </div>
 
           <div>
             <label className="block text-gray-700 font-medium">Any Medical Conditions</label>
@@ -278,7 +339,8 @@ const AddNewStudent = () => {
             {/* Cancel Button */}
             <div className="pt-4 text-center">
               <button
-                type="cancel"
+                type="button"
+                onClick={handleCancel}
                 className="bg-gray-400 text-white px-6 py-2 rounded-md hover:bg-gray-500 transition font-semibold"
               >
                 Cancel

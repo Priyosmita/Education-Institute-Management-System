@@ -91,7 +91,7 @@ const Navbar = ({ setSelectedView }) => {
   };
 
   return (
-    <div className="bg-white shadow-2xl h-fit w-64 rounded-lg flex flex-col gap-y-6 pb-6">
+    <div className="bg-white shadow-2xl h-fit w-64 rounded-lg flex flex-col gap-y-6 pb-6 top-28 sticky">
       <div className="text-xl font-bold text-gray-800 pl-4 pt-6">Navigation</div>
 
       {navSections.map(({ id, title, icon, options }) =>

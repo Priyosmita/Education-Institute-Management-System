@@ -32,7 +32,7 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-white w-full h-20 flex justify-between items-center px-10 shadow-md'>
+    <div className='bg-white w-full h-20 flex justify-between items-center px-10 shadow-md sticky top-0'>
       <div className='text-gray-800 text-2xl font-bold'>
         Unique Educational Institute
       </div>

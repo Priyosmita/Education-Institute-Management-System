@@ -380,7 +380,8 @@ const AddNewStudent = () => {
               </button>
             </div>
           </div>
-
+          
+          {/* Medical Conditions */}
           <div>
             <label className="block text-gray-700 font-medium">Any Medical Conditions</label>
             <input
@@ -395,7 +396,7 @@ const AddNewStudent = () => {
           </div>
 
 
-
+          {/* Buttons */}
           <div className='flex flex-row justify-end gap-x-4'>
             {/* Submit Button */}
             <div className="pt-4 text-center">

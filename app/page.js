@@ -35,7 +35,7 @@ const Page = () => {
         <div className="p-6">
           <Navbar setSelectedView={setSelectedView} />
         </div>
-        <div className="pt-6 pr-6 pb-6 flex-1">
+        <div className="pt-8 pr-6 pb-6 flex-1">
           <Window selectedView={selectedView} />
         </div>
       </div>

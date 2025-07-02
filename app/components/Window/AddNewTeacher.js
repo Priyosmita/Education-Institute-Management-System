@@ -10,6 +10,7 @@ const AddNewTeacher = () => {
     TeacherMobileNumber: '',
     DateOfResignation: '',
     RatePerUnit: '',
+    TeacherSchool: '',
   });
 
   const handleChange = (e) => {
@@ -30,6 +31,7 @@ const AddNewTeacher = () => {
         TeacherMobileNumber: '',
         DateOfResignation: '',
         RatePerUnit: '',
+        TeacherSchool: '',
       });
     }
   };
@@ -48,8 +50,17 @@ const AddNewTeacher = () => {
       TeacherMobileNumber: '',
       DateOfResignation: '',
       RatePerUnit: '',
+      TeacherSchool: '',
     });
   };
+
+  // const schoolOptions = [
+  //   'Sunrise Public School',
+  //   'Green Valley Academy',
+  //   'St. Xavier’s School',
+  //   'National English School',
+  //   'DPS Megacity',
+  // ];
 
   return (
     <>
@@ -102,10 +113,33 @@ const AddNewTeacher = () => {
                   className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
                 />
               </div>
-              <div>
+              {/* <div>
                 <label className="block text-gray-700 font-medium">School/Institution</label>
-
-              </div>
+                <select
+                  name="SchoolName"
+                  value={formData.SchoolName}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                >
+                  <option value="">Select Institution</option>
+                  {schoolOptions.map((school, i) => (
+                    <option key={i} value={school}>{school}</option>
+                  ))}
+                </select>
+              </div> */}
+              <div>
+              <label className="block text-gray-700 font-medium">School</label>
+              <input
+                type="text"
+                name="TeacherSchool"
+                value={formData.TeacherSchool}
+                onChange={handleChange}
+                required
+                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                placeholder="Enter Teacher's School"
+              />
+            </div>
             </div>
 
             {/* Address */}

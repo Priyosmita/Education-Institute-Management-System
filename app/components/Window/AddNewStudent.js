@@ -17,6 +17,7 @@ const AddNewStudent = () => {
     SiblingName: '',
     SiblingClass: '',
     MedicalConditions: '',
+    
   });
 
   const [subjectsTaken, setSubjectsTaken] = useState([
@@ -97,6 +98,7 @@ const AddNewStudent = () => {
       StudentWhatsappNumber: '',
       SiblingName: '',
       SiblingClass: '',
+      StudentSubjectsTaken: subjectsTaken,
       MedicalConditions: '',
     });
     setSubjectsTaken([{ StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);

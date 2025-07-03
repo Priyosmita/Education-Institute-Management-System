@@ -12,6 +12,7 @@ const AddNewTeacher = () => {
     RatePerUnit: '',
     TeacherSchool: '',
     Status: '',
+
   });
 
   const handleChange = (e) => {
@@ -36,8 +37,8 @@ const AddNewTeacher = () => {
         Status: '',
       });
       setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]),
-      setRemunerations([{ TeacherSubject: '', Rate: '', Mode: '' }]),
-      setAvailability([{Day: '', StartTime: '', EndTime: ''}]);
+        setRemunerations([{ TeacherSubject: '', Rate: '', Mode: '' }]),
+        setAvailability([{ TeacherDay: '', TeacherStartTime: '', TeacherEndTime: '' }]);
     }
   };
 
@@ -57,10 +58,13 @@ const AddNewTeacher = () => {
       RatePerUnit: '',
       TeacherSchool: '',
       Status: '',
+      TeacherSubjectsTaken: subjectsTaken,
+      Remunerations: remunerations,
+      Availability: availability,
     });
     setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]),
-    setRemunerations([{ TeacherSubject: '', Rate: '', Mode: '' }]),
-    setAvailability([{Day: '', StartTime: '', EndTime: ''}]);
+      setRemunerations([{ TeacherSubject: '', Rate: '', Mode: '' }]),
+      setAvailability([{ TeacherDay: '', TeacherStartTime: '', TeacherEndTime: '' }]);
   };
 
   const [subjectsTaken, setSubjectsTaken] = useState([
@@ -114,7 +118,7 @@ const AddNewTeacher = () => {
   };
 
   const [availability, setAvailability] = useState([
-    { Day: '', StartTime: '', EndTime: '' }
+    { TeacherDay: '', TeacherStartTime: '', TeacherEndTime: '' }
   ]);
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -127,12 +131,12 @@ const AddNewTeacher = () => {
 
   const canAddMoreAvailability = () => {
     const last = availability[availability.length - 1];
-    return last.Day && last.StartTime && last.EndTime;
+    return last.TeacherDay && last.TeacherStartTime && last.TeacherEndTime;
   };
 
   const addAvailabilityRow = () => {
     if (canAddMoreAvailability()) {
-      setAvailability([...availability, { Day: '', StartTime: '', EndTime: '' }]);
+      setAvailability([...availability, { TeacherDay: '', TeacherStartTime: '', TeacherEndTime: '' }]);
     } else {
       alert('Please fill all fields of the current availability before adding a new one.');
     }
@@ -402,8 +406,8 @@ const AddNewTeacher = () => {
                   <div>
                     <label className="block text-gray-700 font-medium">Day</label>
                     <select
-                      value={slot.Day}
-                      onChange={(e) => handleAvailabilityChange(index, 'Day', e.target.value)}
+                      value={slot.TeacherDay}
+                      onChange={(e) => handleAvailabilityChange(index, 'TeacherDay', e.target.value)}
                       className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                     >
                       <option value="">Select Day</option>
@@ -418,8 +422,8 @@ const AddNewTeacher = () => {
                     <label className="block text-gray-700 font-medium">Start Time</label>
                     <input
                       type="time"
-                      value={slot.StartTime}
-                      onChange={(e) => handleAvailabilityChange(index, 'StartTime', e.target.value)}
+                      value={slot.TeacherStartTime}
+                      onChange={(e) => handleAvailabilityChange(index, 'TeacherStartTime', e.target.value)}
                       className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                     />
                   </div>
@@ -429,8 +433,8 @@ const AddNewTeacher = () => {
                     <label className="block text-gray-700 font-medium">End Time</label>
                     <input
                       type="time"
-                      value={slot.EndTime}
-                      onChange={(e) => handleAvailabilityChange(index, 'EndTime', e.target.value)}
+                      value={slot.TeacherEndTime}
+                      onChange={(e) => handleAvailabilityChange(index, 'TeacherEndTime', e.target.value)}
                       className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                     />
                   </div>

@@ -20,7 +20,7 @@ const AddNewStudent = () => {
   });
 
   const [subjectsTaken, setSubjectsTaken] = useState([
-    { subject: '', class: '', batch: '', teacher: '' },
+    { StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' },
   ]);
 
   const subjectOptions = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English'];
@@ -36,12 +36,12 @@ const AddNewStudent = () => {
 
   const canAddMoreSubjects = () => {
     const last = subjectsTaken[subjectsTaken.length - 1];
-    return last.subject && last.class && last.batch && last.teacher;
+    return last.StudentSubject && last.StudentClass && last.StudentBatch && last.StudentTeacher;
   };
 
   const addSubjectRow = () => {
     if (canAddMoreSubjects()) {
-      setSubjectsTaken([...subjectsTaken, { subject: '', class: '', batch: '', teacher: '' }]);
+      setSubjectsTaken([...subjectsTaken, { StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);
     } else {
       alert('Please fill all fields of the current subject before adding a new one.');
     }
@@ -73,7 +73,7 @@ const AddNewStudent = () => {
         SiblingClass: '',
         MedicalConditions: '',
       });
-      setSubjectsTaken([{ subject: '', class: '', batch: '', teacher: '' }]);
+      setSubjectsTaken([{ StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);
     }
   };
 
@@ -99,7 +99,7 @@ const AddNewStudent = () => {
       SiblingClass: '',
       MedicalConditions: '',
     });
-    setSubjectsTaken([{ subject: '', class: '', batch: '', teacher: '' }]);
+    setSubjectsTaken([{ StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);
   };
 
   return (
@@ -308,18 +308,16 @@ const AddNewStudent = () => {
             />
           </div>
 
-
           {/* Subjects Taken */}
           <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
             <p className='text-gray-600 text-xl font-semibold mb-4'>Subjects Taken</p>
-
             {subjectsTaken.map((entry, index) => (
               <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                 <div>
                   <label className="block text-gray-700 font-medium">Subject</label>
                   <select
-                    value={entry.subject}
-                    onChange={(e) => handleSubjectChange(index, 'subject', e.target.value)}
+                    value={entry.StudentSubject}
+                    onChange={(e) => handleSubjectChange(index, 'StudentSubject', e.target.value)}
                     className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                   >
                     <option value="">Select Subject</option>
@@ -331,8 +329,8 @@ const AddNewStudent = () => {
                 <div>
                   <label className="block text-gray-700 font-medium">Class</label>
                   <select
-                    value={entry.class}
-                    onChange={(e) => handleSubjectChange(index, 'class', e.target.value)}
+                    value={entry.StudentClass}
+                    onChange={(e) => handleSubjectChange(index, 'StudentClass', e.target.value)}
                     className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                   >
                     <option value="">Select Class</option>
@@ -344,8 +342,8 @@ const AddNewStudent = () => {
                 <div>
                   <label className="block text-gray-700 font-medium">Batch</label>
                   <select
-                    value={entry.batch}
-                    onChange={(e) => handleSubjectChange(index, 'batch', e.target.value)}
+                    value={entry.StudentBatch}
+                    onChange={(e) => handleSubjectChange(index, 'StudentBatch', e.target.value)}
                     className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                   >
                     <option value="">Select Batch</option>
@@ -357,8 +355,8 @@ const AddNewStudent = () => {
                 <div>
                   <label className="block text-gray-700 font-medium">Teacher Name</label>
                   <select
-                    value={entry.teacher}
-                    onChange={(e) => handleSubjectChange(index, 'teacher', e.target.value)}
+                    value={entry.StudentTeacher}
+                    onChange={(e) => handleSubjectChange(index, 'StudentTeacher', e.target.value)}
                     className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                   >
                     <option value="">Select Teacher</option>

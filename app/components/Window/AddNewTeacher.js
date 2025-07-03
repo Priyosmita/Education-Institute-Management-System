@@ -11,7 +11,6 @@ const AddNewTeacher = () => {
     DateOfResignation: '',
     RatePerUnit: '',
     TeacherSchool: '',
-    YearsOfExperience: '',
   });
 
   const handleChange = (e) => {
@@ -33,9 +32,8 @@ const AddNewTeacher = () => {
         DateOfResignation: '',
         RatePerUnit: '',
         TeacherSchool: '',
-        YearsOfExperience: '',
       });
-      setSubjectsTaken([{ subject: '', class: '', board: '', experience: '' }]);
+      setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]);
     }
   };
 
@@ -54,13 +52,12 @@ const AddNewTeacher = () => {
       DateOfResignation: '',
       RatePerUnit: '',
       TeacherSchool: '',
-      YearsOfExperience: '',
     });
-    setSubjectsTaken([{ subject: '', class: '', board: '', experience: '' }]);
+    setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]);
   };
 
   const [subjectsTaken, setSubjectsTaken] = useState([
-    { subject: '', class: '', board: '', experience: '' },
+    { TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' },
   ]);
 
   const subjectOptions = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English'];
@@ -75,12 +72,12 @@ const AddNewTeacher = () => {
 
   const canAddMoreSubjects = () => {
     const last = subjectsTaken[subjectsTaken.length - 1];
-    return last.subject && last.class && last.board && last.experience;
+    return last.TeacherSubject && last.TeacherClass && last.TeacherBoard && last.YearsOfExperience;
   };
 
   const addSubjectRow = () => {
     if (canAddMoreSubjects()) {
-      setSubjectsTaken([...subjectsTaken, { subject: '', class: '', board: '', experience: '' }]);
+      setSubjectsTaken([...subjectsTaken, { TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]);
     } else {
       alert('Please fill all fields of the current subject before adding a new one.');
     }
@@ -287,7 +284,18 @@ const AddNewTeacher = () => {
                 <p className='text-gray-600 text-md font-semibold'>Subject-wise Remuneration</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <label className="block text-gray-700 font-medium">Subject</label>
-                  <label className="block text-gray-700 font-medium">Rate Per Subject</label>
+                  <div>
+                    <label className="block text-gray-700 font-medium">Mobile Number</label>
+                    <input
+                      type="text"
+                      name="TeacherMobileNumber"
+                      value={formData.TeacherMobileNumber}
+                      onChange={handleChange}
+                      required
+                      className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                      placeholder="Enter Teacher's Mobile Number"
+                    />
+                  </div>
                 </div>
                 <div className="pt-4 text-center flex justify-start">
                   <button

@@ -11,6 +11,7 @@ const AddNewTeacher = () => {
     DateOfResignation: '',
     RatePerUnit: '',
     TeacherSchool: '',
+    YearsOfExperience: '',
   });
 
   const handleChange = (e) => {
@@ -32,7 +33,9 @@ const AddNewTeacher = () => {
         DateOfResignation: '',
         RatePerUnit: '',
         TeacherSchool: '',
+        YearsOfExperience: '',
       });
+      setSubjectsTaken([{ subject: '', class: '', board: '', experience: '' }]);
     }
   };
 
@@ -51,7 +54,36 @@ const AddNewTeacher = () => {
       DateOfResignation: '',
       RatePerUnit: '',
       TeacherSchool: '',
+      YearsOfExperience: '',
     });
+    setSubjectsTaken([{ subject: '', class: '', board: '', experience: '' }]);
+  };
+
+  const [subjectsTaken, setSubjectsTaken] = useState([
+    { subject: '', class: '', board: '', experience: '' },
+  ]);
+
+  const subjectOptions = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English'];
+  const classOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  const boardOptions = ['CBSE', 'ICSE', 'State Board'];
+
+  const handleSubjectChange = (index, field, value) => {
+    const updated = [...subjectsTaken];
+    updated[index][field] = value;
+    setSubjectsTaken(updated);
+  };
+
+  const canAddMoreSubjects = () => {
+    const last = subjectsTaken[subjectsTaken.length - 1];
+    return last.subject && last.class && last.board && last.experience;
+  };
+
+  const addSubjectRow = () => {
+    if (canAddMoreSubjects()) {
+      setSubjectsTaken([...subjectsTaken, { subject: '', class: '', board: '', experience: '' }]);
+    } else {
+      alert('Please fill all fields of the current subject before adding a new one.');
+    }
   };
 
   // const schoolOptions = [
@@ -129,17 +161,17 @@ const AddNewTeacher = () => {
                 </select>
               </div> */}
               <div>
-              <label className="block text-gray-700 font-medium">School</label>
-              <input
-                type="text"
-                name="TeacherSchool"
-                value={formData.TeacherSchool}
-                onChange={handleChange}
-                required
-                className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
-                placeholder="Enter Teacher's School"
-              />
-            </div>
+                <label className="block text-gray-700 font-medium">School</label>
+                <input
+                  type="text"
+                  name="TeacherSchool"
+                  value={formData.TeacherSchool}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
+                  placeholder="Enter Teacher's School"
+                />
+              </div>
             </div>
 
             {/* Address */}
@@ -173,15 +205,73 @@ const AddNewTeacher = () => {
             {/* Subject Details */}
             <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
               <p className='text-gray-600 text-xl font-semibold mb-4'>Subjects Taken</p>
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                <label className="block text-gray-700 font-medium">Subject</label>
-                <label className="block text-gray-700 font-medium">Class</label>
-                <label className="block text-gray-700 font-medium">Board</label>
-                <label className="block text-gray-700 font-medium">Years of Experience</label>
-              </div>
-              <div className="pt-4 text-center flex justify-start">
+
+              {subjectsTaken.map((entry, index) => (
+                <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                  {/* Subject Dropdown */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Subject</label>
+                    <select
+                      value={entry.subject}
+                      onChange={(e) => handleSubjectChange(index, 'subject', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    >
+                      <option value="">Select Subject</option>
+                      {subjectOptions.map((s, i) => (
+                        <option key={i} value={s}>{s}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Class Dropdown */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Class</label>
+                    <select
+                      value={entry.class}
+                      onChange={(e) => handleSubjectChange(index, 'class', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    >
+                      <option value="">Select Class</option>
+                      {classOptions.map((c, i) => (
+                        <option key={i} value={c}>{c}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Board Dropdown */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Board</label>
+                    <select
+                      value={entry.board}
+                      onChange={(e) => handleSubjectChange(index, 'board', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    >
+                      <option value="">Select Board</option>
+                      {boardOptions.map((b, i) => (
+                        <option key={i} value={b}>{b}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Experience Input */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Years of Experience</label>
+                    <input
+                      type="text"
+                      value={entry.experience}
+                      onChange={(e) => handleSubjectChange(index, 'experience', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                      placeholder="Enter Years of Experience"
+                      required
+                    />
+                  </div>
+                </div>
+              ))}
+
+              <div className="pt-4 text-left">
                 <button
                   type="button"
+                  onClick={addSubjectRow}
                   className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition text-sm font-semibold"
                 >
                   Add More Subjects

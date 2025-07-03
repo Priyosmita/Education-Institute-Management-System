@@ -202,15 +202,14 @@ const AddNewTeacher = () => {
             {/* Subject Details */}
             <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
               <p className='text-gray-600 text-xl font-semibold mb-4'>Subjects Taken</p>
-
               {subjectsTaken.map((entry, index) => (
                 <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                   {/* Subject Dropdown */}
                   <div>
                     <label className="block text-gray-700 font-medium">Subject</label>
                     <select
-                      value={entry.subject}
-                      onChange={(e) => handleSubjectChange(index, 'subject', e.target.value)}
+                      value={entry.TeacherSubject}
+                      onChange={(e) => handleSubjectChange(index, 'TeacherSubject', e.target.value)}
                       className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                     >
                       <option value="">Select Subject</option>
@@ -224,8 +223,8 @@ const AddNewTeacher = () => {
                   <div>
                     <label className="block text-gray-700 font-medium">Class</label>
                     <select
-                      value={entry.class}
-                      onChange={(e) => handleSubjectChange(index, 'class', e.target.value)}
+                      value={entry.TeacherClass}
+                      onChange={(e) => handleSubjectChange(index, 'TeacherClass', e.target.value)}
                       className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                     >
                       <option value="">Select Class</option>
@@ -239,8 +238,8 @@ const AddNewTeacher = () => {
                   <div>
                     <label className="block text-gray-700 font-medium">Board</label>
                     <select
-                      value={entry.board}
-                      onChange={(e) => handleSubjectChange(index, 'board', e.target.value)}
+                      value={entry.TeacherBoard}
+                      onChange={(e) => handleSubjectChange(index, 'TeacherBoard', e.target.value)}
                       className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                     >
                       <option value="">Select Board</option>
@@ -255,8 +254,8 @@ const AddNewTeacher = () => {
                     <label className="block text-gray-700 font-medium">Years of Experience</label>
                     <input
                       type="text"
-                      value={entry.experience}
-                      onChange={(e) => handleSubjectChange(index, 'experience', e.target.value)}
+                      value={entry.YearsOfExperience}
+                      onChange={(e) => handleSubjectChange(index, 'YearsOfExperience', e.target.value)}
                       className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                       placeholder="Enter Years of Experience"
                       required

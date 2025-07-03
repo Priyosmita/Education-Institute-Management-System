@@ -168,7 +168,6 @@ const AddNewStudent = () => {
             </div>
           </div>
 
-
           {/* Date of Birth & School Name */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -202,7 +201,7 @@ const AddNewStudent = () => {
             {/* Father & Mother's names */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-gray-700 font-medium">Father's Name</label>
+                <label className="block text-gray-700 font-medium">Father&apos; Name</label>
                 <input
                   type="text"
                   name="FatherName"
@@ -214,7 +213,7 @@ const AddNewStudent = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium">Mother's Name</label>
+                <label className="block text-gray-700 font-medium">Mother&apos; Name</label>
                 <input
                   type="text"
                   name="MotherName"
@@ -230,7 +229,7 @@ const AddNewStudent = () => {
             {/* Mobile numbers */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-gray-700 font-medium">Father's Mobile Number</label>
+                <label className="block text-gray-700 font-medium">Father&apos; Mobile Number</label>
                 <input
                   type="text"
                   name="FatherMobileNumber"
@@ -242,7 +241,7 @@ const AddNewStudent = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium">Mother's Mobile Number</label>
+                <label className="block text-gray-700 font-medium">Mother&apos; Mobile Number</label>
                 <input
                   type="text"
                   name="MotherMobileNumber"
@@ -273,7 +272,7 @@ const AddNewStudent = () => {
           {/* Siblings Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700 font-medium">Sibling's Name</label>
+              <label className="block text-gray-700 font-medium">Sibling&apos; Name</label>
               <input
                 type="text"
                 name="SiblingName"
@@ -285,7 +284,7 @@ const AddNewStudent = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-medium">Sibling's Class</label>
+              <label className="block text-gray-700 font-medium">Sibling&apos; Class</label>
               <input
                 type="text"
                 name="SiblingClass"
@@ -298,7 +297,7 @@ const AddNewStudent = () => {
             </div>
           </div>
           <div>
-            <label className="block text-gray-700 font-medium">Sibling's School</label>
+            <label className="block text-gray-700 font-medium">Sibling&apos; School</label>
             <input
               type="text"
               name="SiblingSchool"
@@ -394,7 +393,6 @@ const AddNewStudent = () => {
               placeholder="Enter Any Medical Conditions"
             />
           </div>
-
 
           {/* Buttons */}
           <div className='flex flex-row justify-end gap-x-4'>

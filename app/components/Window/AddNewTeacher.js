@@ -11,6 +11,7 @@ const AddNewTeacher = () => {
     DateOfResignation: '',
     RatePerUnit: '',
     TeacherSchool: '',
+    Status: '',
   });
 
   const handleChange = (e) => {
@@ -32,17 +33,20 @@ const AddNewTeacher = () => {
         DateOfResignation: '',
         RatePerUnit: '',
         TeacherSchool: '',
+        Status: '',
       });
-      setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]);
+      setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]),
+      setRemunerations([{ TeacherSubject: '', Rate: '', Mode: '' }]),
+      setAvailability([{Day: '', StartTime: '', EndTime: ''}]);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can send formData to your backend or database here
+    // Send formData to your backend or database here
     console.log('Teacher Registered:', formData);
     alert('Teacher added successfully!');
-    // Reset form (optional)
+    // Reset form
     setFormData({
       TeacherFullName: '',
       TeacherID: '',
@@ -52,8 +56,11 @@ const AddNewTeacher = () => {
       DateOfResignation: '',
       RatePerUnit: '',
       TeacherSchool: '',
+      Status: '',
     });
-    setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]);
+    setSubjectsTaken([{ TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]),
+    setRemunerations([{ TeacherSubject: '', Rate: '', Mode: '' }]),
+    setAvailability([{Day: '', StartTime: '', EndTime: ''}]);
   };
 
   const [subjectsTaken, setSubjectsTaken] = useState([
@@ -80,6 +87,54 @@ const AddNewTeacher = () => {
       setSubjectsTaken([...subjectsTaken, { TeacherSubject: '', TeacherClass: '', TeacherBoard: '', YearsOfExperience: '' }]);
     } else {
       alert('Please fill all fields of the current subject before adding a new one.');
+    }
+  };
+
+  const [remunerations, setRemunerations] = useState([
+    { TeacherSubject: '', Rate: '', Mode: '' }
+  ]);
+
+  const handleRemunerationChange = (index, field, value) => {
+    const updated = [...remunerations];
+    updated[index][field] = value;
+    setRemunerations(updated);
+  };
+
+  const canAddMoreRemunerations = () => {
+    const last = remunerations[remunerations.length - 1];
+    return last.TeacherSubject && last.Rate && last.Mode;
+  };
+
+  const addRemunerationRow = () => {
+    if (canAddMoreRemunerations()) {
+      setRemunerations([...remunerations, { TeacherSubject: '', Rate: '', Mode: '' }]);
+    } else {
+      alert('Please fill all fields of the current remuneration before adding a new one.');
+    }
+  };
+
+  const [availability, setAvailability] = useState([
+    { Day: '', StartTime: '', EndTime: '' }
+  ]);
+
+  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  const handleAvailabilityChange = (index, field, value) => {
+    const updated = [...availability];
+    updated[index][field] = value;
+    setAvailability(updated);
+  };
+
+  const canAddMoreAvailability = () => {
+    const last = availability[availability.length - 1];
+    return last.Day && last.StartTime && last.EndTime;
+  };
+
+  const addAvailabilityRow = () => {
+    if (canAddMoreAvailability()) {
+      setAvailability([...availability, { Day: '', StartTime: '', EndTime: '' }]);
+    } else {
+      alert('Please fill all fields of the current availability before adding a new one.');
     }
   };
 
@@ -135,8 +190,8 @@ const AddNewTeacher = () => {
                 <label className="block text-gray-700 font-medium">Date of Joining</label>
                 <input
                   type="date"
-                  name="DateofJoining<"
-                  value={formData.DateofJoining}
+                  name="DateOfJoining"
+                  value={formData.DateOfJoining}
                   onChange={handleChange}
                   required
                   className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
@@ -264,7 +319,7 @@ const AddNewTeacher = () => {
                 </div>
               ))}
 
-              <div className="pt-4 text-left">
+              <div className="text-left">
                 <button
                   type="button"
                   onClick={addSubjectRow}
@@ -279,62 +334,113 @@ const AddNewTeacher = () => {
             <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
               <p className='text-gray-600 text-xl font-semibold mb-4'>Teacher Remuneration</p>
 
-              <div className='bg-gray-50 shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
-                <p className='text-gray-600 text-md font-semibold'>Subject-wise Remuneration</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <label className="block text-gray-700 font-medium">Subject</label>
+              {/* Dynamic Subject-wise Remuneration */}
+              {remunerations.map((entry, index) => (
+                <div key={index} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* Subject Dropdown */}
                   <div>
-                    <label className="block text-gray-700 font-medium">Mobile Number</label>
+                    <label className="block text-gray-700 font-medium">Subject</label>
+                    <select
+                      value={entry.TeacherSubject}
+                      onChange={(e) => handleRemunerationChange(index, 'TeacherSubject', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    >
+                      <option value="">Select Subject</option>
+                      {subjectOptions.map((subj, i) => (
+                        <option key={i} value={subj}>{subj}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Rate Per Subject */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Rate/Subject</label>
                     <input
                       type="text"
-                      name="TeacherMobileNumber"
-                      value={formData.TeacherMobileNumber}
-                      onChange={handleChange}
-                      required
-                      className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
-                      placeholder="Enter Teacher's Mobile Number"
+                      value={entry.Rate}
+                      onChange={(e) => handleRemunerationChange(index, 'Rate', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                      placeholder="Enter Rate"
                     />
                   </div>
-                </div>
-                <div className="pt-4 text-center flex justify-start">
-                  <button
-                    type="button"
-                    className="bg-indigo-500 text-white px-3 py-1 rounded-md hover:bg-indigo-600 transition text-sm font-semibold"
-                  >
-                    Add More Remuneration
-                  </button>
-                </div>
-              </div>
 
-              <p className='text-gray-600 text-md font-semibold'>Payment Calculation Mode</p>
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                <label className="block text-gray-700 font-medium">Select Mode</label>
-                <div>
-                  <label className="block text-gray-700 font-medium">Rate Per Unit</label>
-                  <input
-                    type="text"
-                    name="RatePerUnit"
-                    value={formData.RatePerUnit}
-                    onChange={handleChange}
-                    required
-                    className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
-                    placeholder="Enter Rate Per Unit of Teacher"
-                  />
+                  {/* Mode Dropdown */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Select Mode</label>
+                    <select
+                      value={entry.Mode}
+                      onChange={(e) => handleRemunerationChange(index, 'Mode', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    >
+                      <option value="">Payment Calculation Mode</option>
+                      {['Per day', 'Per Mnth', 'Per Hour', 'Per Class', 'Per Week', 'Per Batch'].map((mode, i) => (
+                        <option key={i} value={mode}>{mode}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
+              ))}
+
+              <div className="text-left">
+                <button
+                  type="button"
+                  onClick={addRemunerationRow}
+                  className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition text-sm font-semibold"
+                >
+                  Add More Remuneration
+                </button>
               </div>
             </div>
 
             {/* Availability */}
             <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
               <p className='text-gray-600 text-xl font-semibold mb-4'>Availability Details</p>
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                <label className="block text-gray-700 font-medium">Day</label>
-                <label className="block text-gray-700 font-medium">Start Time</label>
-                <label className="block text-gray-700 font-medium">End Time</label>
-              </div>
-              <div className="pt-4 text-center flex justify-start">
+
+              {availability.map((slot, index) => (
+                <div key={index} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* Day Dropdown */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Day</label>
+                    <select
+                      value={slot.Day}
+                      onChange={(e) => handleAvailabilityChange(index, 'Day', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    >
+                      <option value="">Select Day</option>
+                      {daysOfWeek.map((day, i) => (
+                        <option key={i} value={day}>{day}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Start Time */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">Start Time</label>
+                    <input
+                      type="time"
+                      value={slot.StartTime}
+                      onChange={(e) => handleAvailabilityChange(index, 'StartTime', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    />
+                  </div>
+
+                  {/* End Time */}
+                  <div>
+                    <label className="block text-gray-700 font-medium">End Time</label>
+                    <input
+                      type="time"
+                      value={slot.EndTime}
+                      onChange={(e) => handleAvailabilityChange(index, 'EndTime', e.target.value)}
+                      className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                    />
+                  </div>
+                </div>
+              ))}
+
+              <div className="text-left">
                 <button
                   type="button"
+                  onClick={addAvailabilityRow}
                   className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition text-sm font-semibold"
                 >
                   Add More Availability
@@ -346,9 +452,48 @@ const AddNewTeacher = () => {
             <div className='bg-white shadow-sm h-fit w-full rounded-lg p-5 space-y-6'>
               <p className='text-gray-600 text-xl font-semibold mb-4'>Teacher Status</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <label className="block text-gray-700 font-medium">Active</label>
-                <label className="block text-gray-700 font-medium">Resigned</label>
-                <label className="block text-gray-700 font-medium">Panel Teacher</label>
+                <div>
+                  <label className="inline-flex items-center text-gray-700 font-medium">
+                    <input
+                      type="radio"
+                      name="TeacherStatus"
+                      value="Active"
+                      checked={formData.TeacherStatus === 'Active'}
+                      onChange={handleChange}
+                      style={{ accentColor: '#4f46e5' }}
+                      className="form-radio h-4 w-4 text-blue-600"
+                    />
+                    <span className="ml-2">Active</span>
+                  </label>
+                </div>
+                <div>
+                  <label className="inline-flex items-center text-gray-700 font-medium">
+                    <input
+                      type="radio"
+                      name="TeacherStatus"
+                      value="Resigned"
+                      checked={formData.TeacherStatus === 'Resigned'}
+                      onChange={handleChange}
+                      style={{ accentColor: '#4f46e5' }}
+                      className="form-radio h-4 w-4 text-blue-600"
+                    />
+                    <span className="ml-2">Resigned</span>
+                  </label>
+                </div>
+                <div>
+                  <label className="inline-flex items-center text-gray-700 font-medium">
+                    <input
+                      type="radio"
+                      name="TeacherStatus"
+                      value="Panel Teacher"
+                      checked={formData.TeacherStatus === 'Panel Teacher'}
+                      onChange={handleChange}
+                      style={{ accentColor: '#4f46e5' }}
+                      className="form-radio h-4 w-4 text-blue-600"
+                    />
+                    <span className="ml-2">Panel Teacher</span>
+                  </label>
+                </div>
               </div>
             </div>
 
@@ -375,7 +520,6 @@ const AddNewTeacher = () => {
                     name="DateOfResignation"
                     value={formData.DateOfResignation}
                     onChange={handleChange}
-                    required
                     className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
                   />
                 </div>
@@ -414,5 +558,3 @@ const AddNewTeacher = () => {
 }
 
 export default AddNewTeacher
-
-

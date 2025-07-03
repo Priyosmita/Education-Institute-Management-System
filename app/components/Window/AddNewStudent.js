@@ -368,7 +368,7 @@ const AddNewStudent = () => {
               </div>
             ))}
 
-            <div className="pt-4 text-center flex justify-start">
+            <div className="text-center flex justify-start">
               <button
                 type="button"
                 onClick={addSubjectRow}

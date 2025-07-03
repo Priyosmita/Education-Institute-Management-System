@@ -11,7 +11,7 @@ const AddNewTeacher = () => {
     DateOfResignation: '',
     RatePerUnit: '',
     TeacherSchool: '',
-    Status: '',
+    TeacherStatus: '',
 
   });
 

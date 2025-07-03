@@ -201,7 +201,7 @@ const AddNewStudent = () => {
             {/* Father & Mother's names */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-gray-700 font-medium">Father&apos; Name</label>
+                <label className="block text-gray-700 font-medium">Father&apos;s Name</label>
                 <input
                   type="text"
                   name="FatherName"
@@ -213,7 +213,7 @@ const AddNewStudent = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium">Mother&apos; Name</label>
+                <label className="block text-gray-700 font-medium">Mother&apos;s Name</label>
                 <input
                   type="text"
                   name="MotherName"
@@ -229,7 +229,7 @@ const AddNewStudent = () => {
             {/* Mobile numbers */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-gray-700 font-medium">Father&apos; Mobile Number</label>
+                <label className="block text-gray-700 font-medium">Father&apos;s Mobile Number</label>
                 <input
                   type="text"
                   name="FatherMobileNumber"
@@ -241,7 +241,7 @@ const AddNewStudent = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium">Mother&apos; Mobile Number</label>
+                <label className="block text-gray-700 font-medium">Mother&apos;s Mobile Number</label>
                 <input
                   type="text"
                   name="MotherMobileNumber"
@@ -272,7 +272,7 @@ const AddNewStudent = () => {
           {/* Siblings Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700 font-medium">Sibling&apos; Name</label>
+              <label className="block text-gray-700 font-medium">Sibling&apos;s Name</label>
               <input
                 type="text"
                 name="SiblingName"
@@ -284,7 +284,7 @@ const AddNewStudent = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-medium">Sibling&apos; Class</label>
+              <label className="block text-gray-700 font-medium">Sibling&apos;s Class</label>
               <input
                 type="text"
                 name="SiblingClass"
@@ -297,7 +297,7 @@ const AddNewStudent = () => {
             </div>
           </div>
           <div>
-            <label className="block text-gray-700 font-medium">Sibling&apos; School</label>
+            <label className="block text-gray-700 font-medium">Sibling&apos;s School</label>
             <input
               type="text"
               name="SiblingSchool"

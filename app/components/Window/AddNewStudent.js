@@ -290,7 +290,6 @@ const AddNewStudent = () => {
                 name="SiblingName"
                 value={formData.SiblingName}
                 onChange={handleChange}
-                required
                 className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
                 placeholder="Enter Sibling's Name"
               />
@@ -302,7 +301,6 @@ const AddNewStudent = () => {
                 name="SiblingClass"
                 value={formData.SiblingClass}
                 onChange={handleChange}
-                required
                 className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
                 placeholder="Enter Sibling's Class"
               />
@@ -315,7 +313,6 @@ const AddNewStudent = () => {
               name="SiblingSchool"
               value={formData.SiblingSchool}
               onChange={handleChange}
-              required
               className="w-full mt-2 p-2 border border-gray-300 shadow-sm rounded-md bg-white text-gray-700"
               placeholder="Enter Sibling's School"
             />

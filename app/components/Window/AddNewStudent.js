@@ -16,6 +16,7 @@ const AddNewStudent = () => {
     StudentWhatsappNumber: '',
     SiblingName: '',
     SiblingClass: '',
+    SiblingSchool:'',
     MedicalConditions: '',
     
   });
@@ -72,6 +73,7 @@ const AddNewStudent = () => {
         StudentWhatsappNumber: '',
         SiblingName: '',
         SiblingClass: '',
+        SiblingSchool:'',
         MedicalConditions: '',
       });
       setSubjectsTaken([{ StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);
@@ -98,6 +100,7 @@ const AddNewStudent = () => {
       StudentWhatsappNumber: '',
       SiblingName: '',
       SiblingClass: '',
+      SiblingSchool:'',
       StudentSubjectsTaken: subjectsTaken,
       MedicalConditions: '',
     });

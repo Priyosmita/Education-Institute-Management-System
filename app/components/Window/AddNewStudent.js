@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AddNewStudent = () => {
   const [formData, setFormData] = useState({
@@ -16,17 +16,17 @@ const AddNewStudent = () => {
     StudentWhatsappNumber: '',
     SiblingName: '',
     SiblingClass: '',
-    SiblingSchool:'',
+    SiblingSchool: '',
     MedicalConditions: '',
-    
+
   });
 
   const [subjectsTaken, setSubjectsTaken] = useState([
-    { StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' },
+    { StudentSubject: '', StudentClass: formData.StudentClass || '', StudentBatch: '', StudentTeacher: '' },
   ]);
 
   const subjectOptions = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English'];
-  const classOptions = ['6', '7', '8', '9', '10', '11', '12'];
+  // const classOptions = ['6', '7', '8', '9', '10', '11', '12'];
   const batchOptions = ['A', 'B', 'C', 'D'];
   const teacherOptions = ['Mr. Sharma', 'Ms. Roy', 'Dr. Khan', 'Mrs. Das'];
 
@@ -43,7 +43,7 @@ const AddNewStudent = () => {
 
   const addSubjectRow = () => {
     if (canAddMoreSubjects()) {
-      setSubjectsTaken([...subjectsTaken, { StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);
+      setSubjectsTaken([...subjectsTaken, { StudentSubject: '', StudentClass: formData.StudentClass || '', StudentBatch: '', StudentTeacher: '' }]);
     } else {
       alert('Please fill all fields of the current subject before adding a new one.');
     }
@@ -73,7 +73,7 @@ const AddNewStudent = () => {
         StudentWhatsappNumber: '',
         SiblingName: '',
         SiblingClass: '',
-        SiblingSchool:'',
+        SiblingSchool: '',
         MedicalConditions: '',
       });
       setSubjectsTaken([{ StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);
@@ -100,12 +100,21 @@ const AddNewStudent = () => {
       StudentWhatsappNumber: '',
       SiblingName: '',
       SiblingClass: '',
-      SiblingSchool:'',
+      SiblingSchool: '',
       StudentSubjectsTaken: subjectsTaken,
       MedicalConditions: '',
     });
     setSubjectsTaken([{ StudentSubject: '', StudentClass: '', StudentBatch: '', StudentTeacher: '' }]);
   };
+
+  useEffect(() => {
+  setSubjectsTaken((prevSubjects) =>
+    prevSubjects.map((subject) => ({
+      ...subject,
+      StudentClass: formData.StudentClass || '',
+    }))
+  );
+}, [formData.StudentClass]);
 
   return (
     <div className="bg-white shadow-2xl h-fit w-full rounded-lg p-10">
@@ -330,7 +339,7 @@ const AddNewStudent = () => {
                     ))}
                   </select>
                 </div>
-                <div>
+                {/* <div>
                   <label className="block text-gray-700 font-medium">Class</label>
                   <select
                     value={entry.StudentClass}
@@ -342,7 +351,17 @@ const AddNewStudent = () => {
                       <option key={i} value={c}>{c}</option>
                     ))}
                   </select>
+                </div> */}
+                <div>
+                  <label className="block text-gray-700 font-medium">Class</label>
+                  <input
+                    type="text"
+                    value={formData.StudentClass}
+                    readOnly
+                    className="w-full mt-2 p-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                  />
                 </div>
+
                 <div>
                   <label className="block text-gray-700 font-medium">Batch</label>
                   <select
@@ -382,7 +401,7 @@ const AddNewStudent = () => {
               </button>
             </div>
           </div>
-          
+
           {/* Medical Conditions */}
           <div>
             <label className="block text-gray-700 font-medium">Any Medical Conditions</label>
